@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "616009798129",
+    "project_id": "knowyourtime-7c7b0",
+    "storage_bucket": "knowyourtime-7c7b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616009798129:android:3507f8a0c88648e5abf450",
+        "android_client_info": {
+          "package_name": "com.example.know_your_time"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616009798129-8g6u4g5r2sh5u4b8m6idc6r3sqe8hogt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiT93RiXxIA_dNWgySy5jaOcAlkuRbWOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616009798129-8g6u4g5r2sh5u4b8m6idc6r3sqe8hogt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
