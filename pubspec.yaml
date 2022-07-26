@@ -8,10 +8,14 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
+  fluttertoast: ^8.0.9
+  firebase_auth: ^3.5.0
   core_ui:
     path: core_ui
-  firebase_core:
-  cloud_firestore:
+  domain:
+    path: domain
+  firebase_core: ^1.20.0
+  cloud_firestore: ^3.4.0
   provider: ^6.0.3
   flutter:
     sdk: flutter
