@@ -6,10 +6,13 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   fluttertoast: ^8.0.9
   firebase_auth: ^3.5.0
+  core:
+    path: core
   core_ui:
     path: core_ui
   domain:
@@ -19,6 +22,11 @@ dependencies:
   provider: ^6.0.3
   flutter:
     sdk: flutter
+  data:
+    path: data
+
+  tracker_board_view:
+    path: features/tracker_board_view
 
   cupertino_icons: ^1.0.2
 
@@ -27,6 +35,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  dart_code_metrics: ^4.15.0
 
 flutter:
   uses-material-design: true
@@ -42,6 +51,8 @@ flutter:
     - assets/icons/icon-social.svg
     - assets/icons/icon-study.svg
     - assets/icons/icon-work.svg
+    # translations
+    - assets/translations/en-US.json
 
   #fonts
   fonts:

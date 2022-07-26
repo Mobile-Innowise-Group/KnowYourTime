@@ -124,8 +124,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           timeInSecForIosWeb: 7,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
     } else {
       _emailController.clear();
       _passwordController.clear();
@@ -147,8 +146,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           timeInSecForIosWeb: 7,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
     } else {
       _emailController.clear();
       _passwordController.clear();
@@ -158,7 +156,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundAuth,
+      backgroundColor: AppColors.darkBlue,
       body: Column(
         children: <Widget>[
           _logo(),
