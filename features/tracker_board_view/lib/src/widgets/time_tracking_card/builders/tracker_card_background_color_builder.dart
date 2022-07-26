@@ -1,4 +1,3 @@
-
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -29,5 +28,5 @@ Color buildTrackerCardBackgroundColor(TrackerCardType trackerCardType) {
     return AppColors.softOrangeSelfCare;
   }
 
-  return Colors.white;
+  return AppColors.white;
 }

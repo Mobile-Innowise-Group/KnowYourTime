@@ -6,7 +6,7 @@ class AppTextStyle {
   static const String _rubicFamily = 'Rubic';
   static const Color _textColor = AppColors.textColor;
   static const Color _textHintColor = AppColors.textHintColor;
-  static const Color _textLoginButtonColor = AppColors.backgroundAuth;
+  static const Color _textLoginButtonColor = AppColors.darkBlue;
 
   static const TextStyle rubicRegular10 = TextStyle(
     fontFamily: _rubicFamily,

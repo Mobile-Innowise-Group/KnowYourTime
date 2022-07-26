@@ -18,7 +18,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   late final String _password;
   bool showLogin = true;
 
-  AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
 
   Widget _logo() {
     const double imageSize = 60.0;
@@ -52,7 +52,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             borderSide: BorderSide(color: AppColors.white, width: 3),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white54, width: 1),
+            borderSide: BorderSide(color: AppColors.white54, width: 1),
           ),
           prefixIcon: Padding(
             padding:
@@ -113,7 +113,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     _email = _emailController.text;
     _password = _passwordController.text;
 
-    if (_email.isEmpty || _password.isEmpty) return;
+    if (_email.isEmpty || _password.isEmpty) {
+      return;
+    }
     final UserInno? user = await _authService.signInWithEmailAndPassword(
         _email.trim(), _password.trim());
     if (user == null) {
@@ -122,8 +124,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 7,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
+          backgroundColor: AppColors.red,
+          textColor: AppColors.white,
           fontSize: 16.0);
     } else {
       _emailController.clear();
@@ -135,7 +137,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     _email = _emailController.text;
     _password = _passwordController.text;
 
-    if (_email.isEmpty || _password.isEmpty) return;
+    if (_email.isEmpty || _password.isEmpty) {
+      return;
+    }
     final UserInno? user = await _authService.registerWithEmailAndPassword(
         _email.trim(), _password.trim());
     if (user == null) {
@@ -144,8 +148,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 7,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
+          backgroundColor: AppColors.red,
+          textColor: AppColors.white,
           fontSize: 16.0);
     } else {
       _emailController.clear();
@@ -156,6 +160,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.darkBlue,
       body: Column(
         children: <Widget>[
