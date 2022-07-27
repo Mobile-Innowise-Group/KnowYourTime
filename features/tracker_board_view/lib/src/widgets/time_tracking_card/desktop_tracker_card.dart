@@ -43,7 +43,7 @@ class DesktopTrackerCard extends StatelessWidget {
                 right: 10,
                 top: -12,
                 child: RotationTransition(
-                  turns: const AlwaysStoppedAnimation(-10 / 360),
+                  turns: const AlwaysStoppedAnimation<double>(-10 / 360),
                   child: SizedBox.square(
                     dimension: 54.0,
                     child: SvgPicture.asset(

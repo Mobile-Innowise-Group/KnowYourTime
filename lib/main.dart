@@ -1,7 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:data/data.dart';
-import 'package:data/services/firebase_auth_service.dart';
-import 'package:domain/entities/user.dart';
+import 'package:data/src/services/firebase_auth_service.dart';
+import 'package:domain/src/entities/user/user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:know_your_time/screens/landing.dart';

@@ -35,7 +35,9 @@ class ProfileMenuButton extends StatelessWidget {
   }
 
   Color _getColor(bool isHover) {
-    if (isActive) return AppColors.white;
+    if (isActive) {
+      return AppColors.white;
+    }
     return isHover ? AppColors.white : AppColors.paleBlue;
   }
 }

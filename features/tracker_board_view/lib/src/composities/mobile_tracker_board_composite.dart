@@ -1,5 +1,5 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:data/services/firebase_auth_service.dart';
+import 'package:data/src/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../bloc/tracker_board_bloc.dart';

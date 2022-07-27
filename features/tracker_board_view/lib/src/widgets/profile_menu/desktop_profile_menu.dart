@@ -62,10 +62,7 @@ class DesktopProfileMenu extends StatelessWidget {
                     CircleAvatar(
                       radius: 28,
                       backgroundColor: AppColors.white,
-                      child: CircleAvatar(
-                        radius: 26,
-                        backgroundImage: avatar,
-                      ),
+                      child: CircleAvatar(radius: 26, backgroundImage: avatar),
                     ),
                     const Spacer(),
                     Text(

@@ -1,4 +1,4 @@
-import 'package:domain/entities/user.dart';
+import 'package:domain/src/entities/user/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:know_your_time/screens/auth_screen.dart';
 import 'package:provider/provider.dart';

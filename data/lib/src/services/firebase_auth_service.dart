@@ -1,5 +1,5 @@
-import 'package:data/mappers/user_mapper.dart';
-import 'package:domain/entities/user.dart';
+import 'package:data/src/mappers/user_mapper/user_mapper.dart';
+import 'package:domain/src/entities/user/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {

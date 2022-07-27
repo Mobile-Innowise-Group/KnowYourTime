@@ -4,13 +4,21 @@ import '../models/period_time_type.dart';
 import '../models/time_frame_filter.dart';
 import '../models/work_time_frame.dart';
 
-TimeFrameFilter applyTimeFrameFilter({required PeriodTimeType periodTimeType, required TimeFrameList timeFrameList}) {
-  final Play play = _getPlay(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
-  final Work work = _getWork(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
-  final Study study = _getStudy(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
-  final Exercise exercise = _getExercise(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
-  final Social social = _getSocial(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
-  final SelfCare selfCare = _getSelfCare(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
+TimeFrameFilter applyTimeFrameFilter(
+    {required PeriodTimeType periodTimeType,
+    required TimeFrameList timeFrameList}) {
+  final Play play =
+      _getPlay(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
+  final Work work =
+      _getWork(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
+  final Study study =
+      _getStudy(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
+  final Exercise exercise = _getExercise(
+      periodTimeType: periodTimeType, timeFrameList: timeFrameList);
+  final Social social =
+      _getSocial(periodTimeType: periodTimeType, timeFrameList: timeFrameList);
+  final SelfCare selfCare = _getSelfCare(
+      periodTimeType: periodTimeType, timeFrameList: timeFrameList);
 
   return TimeFrameFilter(
     work: work,
@@ -22,8 +30,11 @@ TimeFrameFilter applyTimeFrameFilter({required PeriodTimeType periodTimeType, re
   );
 }
 
-Play _getPlay({required PeriodTimeType periodTimeType, required TimeFrameList timeFrameList}) {
-  final TimeFrame playTimeFrame = timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
+Play _getPlay(
+    {required PeriodTimeType periodTimeType,
+    required TimeFrameList timeFrameList}) {
+  final TimeFrame playTimeFrame =
+      timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
     return timeFrame.title == 'Play';
   });
 
@@ -47,8 +58,11 @@ Play _getPlay({required PeriodTimeType periodTimeType, required TimeFrameList ti
   );
 }
 
-Work _getWork({required PeriodTimeType periodTimeType, required TimeFrameList timeFrameList}) {
-  final TimeFrame workTimeFrame = timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
+Work _getWork(
+    {required PeriodTimeType periodTimeType,
+    required TimeFrameList timeFrameList}) {
+  final TimeFrame workTimeFrame =
+      timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
     return timeFrame.title == 'Work';
   });
 
@@ -72,8 +86,11 @@ Work _getWork({required PeriodTimeType periodTimeType, required TimeFrameList ti
   );
 }
 
-Study _getStudy({required PeriodTimeType periodTimeType, required TimeFrameList timeFrameList}) {
-  final TimeFrame studyTimeFrame = timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
+Study _getStudy(
+    {required PeriodTimeType periodTimeType,
+    required TimeFrameList timeFrameList}) {
+  final TimeFrame studyTimeFrame =
+      timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
     return timeFrame.title == 'Study';
   });
 
@@ -97,8 +114,11 @@ Study _getStudy({required PeriodTimeType periodTimeType, required TimeFrameList 
   );
 }
 
-Exercise _getExercise({required PeriodTimeType periodTimeType, required TimeFrameList timeFrameList}) {
-  final TimeFrame exerciseTimeFrame = timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
+Exercise _getExercise(
+    {required PeriodTimeType periodTimeType,
+    required TimeFrameList timeFrameList}) {
+  final TimeFrame exerciseTimeFrame =
+      timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
     return timeFrame.title == 'Exercise';
   });
 
@@ -122,8 +142,11 @@ Exercise _getExercise({required PeriodTimeType periodTimeType, required TimeFram
   );
 }
 
-Social _getSocial({required PeriodTimeType periodTimeType, required TimeFrameList timeFrameList}) {
-  final TimeFrame socialTimeFrame = timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
+Social _getSocial(
+    {required PeriodTimeType periodTimeType,
+    required TimeFrameList timeFrameList}) {
+  final TimeFrame socialTimeFrame =
+      timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
     return timeFrame.title == 'Social';
   });
 
@@ -147,8 +170,11 @@ Social _getSocial({required PeriodTimeType periodTimeType, required TimeFrameLis
   );
 }
 
-SelfCare _getSelfCare({required PeriodTimeType periodTimeType, required TimeFrameList timeFrameList}) {
-  final TimeFrame selfCareTimeFrame = timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
+SelfCare _getSelfCare(
+    {required PeriodTimeType periodTimeType,
+    required TimeFrameList timeFrameList}) {
+  final TimeFrame selfCareTimeFrame =
+      timeFrameList.timeframes.firstWhere((TimeFrame timeFrame) {
     return timeFrame.title == 'Self Care';
   });
 

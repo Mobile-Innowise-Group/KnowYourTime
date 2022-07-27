@@ -35,21 +35,14 @@ class MobileProfileMenu extends StatelessWidget {
     return Center(
       child: ClipRRect(
         borderRadius: const BorderRadius.all(
-          Radius.circular(
-            AppDimensions.borderRadius,
-          ),
+          Radius.circular(AppDimensions.borderRadius),
         ),
         child: Stack(
           children: <Widget>[
-            Container(
-              color: AppColors.darkBlue,
-              height: _profileMenuHeight,
-            ),
+            Container(color: AppColors.darkBlue, height: _profileMenuHeight),
             ClipRRect(
               borderRadius: const BorderRadius.all(
-                Radius.circular(
-                  AppDimensions.borderRadius,
-                ),
+                Radius.circular(AppDimensions.borderRadius),
               ),
               child: Container(
                 height: _topContainerHeight,
@@ -61,10 +54,8 @@ class MobileProfileMenu extends StatelessWidget {
                       CircleAvatar(
                         radius: 28,
                         backgroundColor: AppColors.white,
-                        child: CircleAvatar(
-                          radius: 26,
-                          backgroundImage: avatar,
-                        ),
+                        child:
+                            CircleAvatar(radius: 26, backgroundImage: avatar),
                       ),
                       const SizedBox(width: AppDimensions.padding24),
                       Column(
