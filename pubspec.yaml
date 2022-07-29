@@ -9,6 +9,7 @@ environment:
   flutter: ">=3.0.0"
 
 dependencies:
+  google_sign_in: ^5.4.0
   fluttertoast: ^8.0.9
   firebase_auth: ^3.5.0
   core:
@@ -43,6 +44,7 @@ flutter:
     # images
     - assets/images/image-jeremy.png
     - assets/images/flutter_logo.png
+    - assets/images/google_icon.png
     # icons
     - assets/icons/icon-ellipsis.svg
     - assets/icons/icon-exercise.svg
