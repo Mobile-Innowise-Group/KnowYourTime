@@ -16,7 +16,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   final TextEditingController _passwordController = TextEditingController();
   late final String _email;
   late final String _password;
-  bool showLogin = true;
+  bool isUserRegistered = true;
 
   final AuthService _authService = AuthService();
 
@@ -29,7 +29,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       body: Column(
         children: <Widget>[
           _logo,
-          showLogin
+          isUserRegistered
               ? Column(
                   children: <Widget>[
                     _authForm('general.login_uppercase'.tr(), _loginUser),
@@ -40,7 +40,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                           'general.not_registered'.tr(),
                           style: AppTextStyle.rubicRegular20,
                         ),
-                        onTap: () => setState(() => showLogin = false),
+                        onTap: () => setState(() => isUserRegistered = false),
                       ),
                     )
                   ],
@@ -57,7 +57,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                         ),
                         onTap: () {
                           setState(() {
-                            showLogin = true;
+                            isUserRegistered = true;
                           });
                         },
                       ),
