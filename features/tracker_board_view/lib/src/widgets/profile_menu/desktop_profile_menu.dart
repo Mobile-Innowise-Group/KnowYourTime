@@ -34,7 +34,7 @@ class DesktopProfileMenu extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(
         Radius.circular(
-          AppDimensions.borderRadius,
+          AppDimensions.borderRadius16,
         ),
       ),
       child: Stack(
@@ -47,7 +47,7 @@ class DesktopProfileMenu extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.all(
               Radius.circular(
-                AppDimensions.borderRadius,
+                AppDimensions.borderRadius16,
               ),
             ),
             child: Container(

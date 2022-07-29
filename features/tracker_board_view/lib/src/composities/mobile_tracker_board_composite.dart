@@ -104,8 +104,11 @@ class MobileTimeTrackingBoardComposite extends StatelessWidget {
                   onPressed: () {
                     AuthService().signOut();
                   },
-                  icon: Icon(Icons.supervised_user_circle, color: Colors.white),
-                  label: Text('Log out', style: AppTextStyle.rubicRegular20),
+                  icon: Icon(Icons.logout, color: Colors.white),
+                  label: Text(
+                    'general.logout'.tr(),
+                    style: AppTextStyle.rubicRegular20,
+                  ),
                 )
               ],
             ),

@@ -1,18 +1,30 @@
 {
-    "timeTrackingBoardFeature": {
-        "work": "Work",
-        "play": "Play",
-        "study": "Study",
-        "exercise": "Exercise",
-        "social": "Social",
-        "selfCare": "Self Care",
-        "daily": "Daily",
-        "weekly": "Weekly",
-        "monthly": "Monthly",
-        "reportFor": "Report for",
-        "hours": "hrs",
-        "lastWeek": "Last Week",
-        "lastMonth": "Last Month",
-        "yesterday": "Yesterday"
-    }
+  "timeTrackingBoardFeature": {
+    "work": "Work",
+    "play": "Play",
+    "study": "Study",
+    "exercise": "Exercise",
+    "social": "Social",
+    "selfCare": "Self Care",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "reportFor": "Report for",
+    "hours": "hrs",
+    "lastWeek": "Last Week",
+    "lastMonth": "Last Month",
+    "yesterday": "Yesterday"
+  },
+  "general": {
+    "login_uppercase": "LOGIN",
+    "not_registered": "Not registered yet? Register!",
+    "register_uppercase": "REGISTER",
+    "already_registered": "Already registered? Login!",
+    "continue_with_google": "Continue with Google",
+    "email_uppercase": "EMAIL",
+    "password_uppercase": "PASSWORD",
+    "cant_sign_in_toast": "Can't SignIn you! Please check your email/password",
+    "cant_register_toast": "Can't Register you! Please check your email/password",
+    "logout": "Log out"
+  }
 }

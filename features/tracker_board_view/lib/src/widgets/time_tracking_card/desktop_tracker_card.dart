@@ -30,7 +30,7 @@ class DesktopTrackerCard extends StatelessWidget {
       builder: (bool isHovered) {
         return ClipRRect(
           borderRadius: const BorderRadius.all(
-            Radius.circular(AppDimensions.borderRadius),
+            Radius.circular(AppDimensions.borderRadius16),
           ),
           child: Stack(
             children: <Widget>[
@@ -61,7 +61,7 @@ class DesktopTrackerCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isHovered ? AppColors.onHover : AppColors.darkBlue,
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(AppDimensions.borderRadius),
+                      Radius.circular(AppDimensions.borderRadius16),
                     ),
                   ),
                   child: Column(

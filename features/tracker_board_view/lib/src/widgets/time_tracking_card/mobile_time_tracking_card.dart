@@ -30,7 +30,7 @@ class MobileTrackerCard extends StatelessWidget {
       builder: (bool isHovered) {
         return ClipRRect(
           borderRadius: const BorderRadius.all(
-            Radius.circular(AppDimensions.borderRadius),
+            Radius.circular(AppDimensions.borderRadius16),
           ),
           child: Stack(
             children: <Widget>[
@@ -59,9 +59,13 @@ class MobileTrackerCard extends StatelessWidget {
                   padding: const EdgeInsets.all(AppDimensions.padding24),
                   height: _height - 30,
                   decoration: BoxDecoration(
-                      color: isHovered ? AppColors.onHover : AppColors.darkBlue,
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(AppDimensions.borderRadius))),
+                    color: isHovered ? AppColors.onHover : AppColors.darkBlue,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        AppDimensions.borderRadius16,
+                      ),
+                    ),
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
