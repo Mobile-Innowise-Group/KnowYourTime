@@ -11,6 +11,8 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final UserInno? user = Provider.of<UserInno?>(context);
     final bool isLoggedIn = user != null;
-    return isLoggedIn ? TimeTrackingBoardScreen() : AuthorizationPage();
+    return isLoggedIn
+        ? const TimeTrackingBoardScreen()
+        : const AuthorizationPage();
   }
 }
