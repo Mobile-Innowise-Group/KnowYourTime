@@ -154,7 +154,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     );
   }
 
-  Widget _authForm(String label, void Function() func) {
+  Widget _authForm(String label, VoidCallback func) {
     return Column(
       children: <Widget>[
         Padding(
@@ -192,11 +192,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     );
   }
 
-  Widget _loginButton(String textLabel, void Function() func) {
+  Widget _loginButton(String textLabel, VoidCallback func) {
     return TextButton(
-      onPressed: () {
-        func();
-      },
+      onPressed: () => func(),
       child: Text(
         textLabel,
         style: AppTextStyle.rubicRegularLoginButton20,
