@@ -34,7 +34,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                   children: <Widget>[
                     _authForm('general.login_uppercase'.tr(), _loginUser),
                     Padding(
-                      padding: EdgeInsets.all(AppDimensions.padding10),
+                      padding: const EdgeInsets.all(AppDimensions.padding10),
                       child: GestureDetector(
                         child: Text(
                           'general.not_registered'.tr(),
@@ -49,7 +49,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                   children: <Widget>[
                     _authForm('general.register_uppercase'.tr(), _registerUser),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(AppDimensions.padding10),
                       child: GestureDetector(
                         child: Text(
                           'general.already_registered'.tr(),
@@ -64,8 +64,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                     )
                   ],
                 ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
+          const Padding(
+            padding: EdgeInsets.symmetric(
               horizontal: AppDimensions.padding20,
               vertical: AppDimensions.padding10,
             ),
@@ -99,17 +99,15 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   Widget get _logo {
     const double imageSize = 60.0;
     return Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: AppDimensions.padding100,
         bottom: AppDimensions.padding20,
       ),
-      child: Container(
-        child: Align(
-          child: Image.asset(
-            'assets/images/flutter_logo.png',
-            width: imageSize,
-            height: imageSize,
-          ),
+      child: Align(
+        child: Image.asset(
+          'assets/images/flutter_logo.png',
+          width: imageSize,
+          height: imageSize,
         ),
       ),
     );
@@ -130,13 +128,13 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
         decoration: InputDecoration(
           hintStyle: AppTextStyle.rubicRegularHint20,
           hintText: hintText,
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               color: AppColors.white,
               width: 3,
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               color: AppColors.white54,
               width: 1,
@@ -148,7 +146,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             ),
             child: IconTheme(
               child: icon,
-              data: IconThemeData(color: AppColors.white),
+              data: const IconThemeData(color: AppColors.white),
             ),
           ),
         ),
@@ -156,51 +154,47 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     );
   }
 
-  Widget _authForm(String label, void func()) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
-              top: AppDimensions.padding10,
-              bottom: AppDimensions.padding20,
-            ),
-            child: _inputBar(
-              Icon(Icons.email),
-              'general.email_uppercase'.tr(),
-              _emailController,
-              false,
-            ),
+  Widget _authForm(String label, VoidCallback func) {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(
+            top: AppDimensions.padding10,
+            bottom: AppDimensions.padding20,
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: AppDimensions.padding20),
-            child: _inputBar(
-              Icon(Icons.lock),
-              'general.password_uppercase'.tr(),
-              _passwordController,
-              true,
-            ),
+          child: _inputBar(
+            const Icon(Icons.email),
+            'general.email_uppercase'.tr(),
+            _emailController,
+            false,
           ),
-          SizedBox(height: AppDimensions.padding20),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppDimensions.borderRadius4),
-              color: AppColors.white,
-            ),
-            height: 50,
-            width: MediaQuery.of(context).size.width - 40,
-            child: _loginButton(label, func),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: AppDimensions.padding20),
+          child: _inputBar(
+            const Icon(Icons.lock),
+            'general.password_uppercase'.tr(),
+            _passwordController,
+            true,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: AppDimensions.padding20),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppDimensions.borderRadius4),
+            color: AppColors.white,
+          ),
+          height: 50,
+          width: MediaQuery.of(context).size.width - 40,
+          child: _loginButton(label, func),
+        ),
+      ],
     );
   }
 
-  Widget _loginButton(String textLabel, void func()) {
+  Widget _loginButton(String textLabel, VoidCallback func) {
     return TextButton(
-      onPressed: () {
-        func();
-      },
+      onPressed: () => func(),
       child: Text(
         textLabel,
         style: AppTextStyle.rubicRegularLoginButton20,
