@@ -25,6 +25,7 @@
     "password_uppercase": "PASSWORD",
     "cant_sign_in_toast": "Can't SignIn you! Please check your email/password",
     "cant_register_toast": "Can't Register you! Please check your email/password",
-    "logout": "Log out"
+    "logout": "Log out",
+    "continue_with_apple": "Continue with Apple"
   }
 }
