@@ -71,8 +71,10 @@ class AuthService {
     const String charset =
         '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
     final Random random = Random.secure();
-    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
-        .join();
+    return List.generate(
+      length,
+      (_) => charset[random.nextInt(charset.length)],
+    ).join();
   }
 
   String sha256ofString(String input) {
@@ -110,9 +112,7 @@ class AuthService {
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 
-  Future<void> signOut() async {
-    await _fAuth.signOut();
-  }
+  Future<void> signOut() async => await _fAuth.signOut();
 
   Stream<UserInno?> get currentUser {
     return _fAuth.authStateChanges().map(

@@ -20,7 +20,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _updateUserRegistrationStatus(
-      UpdateUserRegistrationStatusEvent event, Emitter<AuthState> emit) {
+    UpdateUserRegistrationStatusEvent event,
+    Emitter<AuthState> emit,
+  ) {
     emit(
       AuthState(
         isUserRegistered: event.isUserRegister,

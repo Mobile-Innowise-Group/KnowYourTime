@@ -15,150 +15,159 @@ class AuthorizationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthBloc>(
-      create: (context) =>
-          AuthBloc(authRepository: serviceLocator.get<AuthRepository>()),
-      child: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-        return Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.darkBlue,
-          body: Column(
-            children: <Widget>[
-              _logo,
-              state.isUserRegistered
-                  ? Column(
-                      children: <Widget>[
-                        _authForm(
-                          label: 'general.login_uppercase'.tr(),
-                          context: context,
-                          func: () {
-                            context.read<AuthBloc>().add(
-                                  SignInWithEmailAndPasswordEvent(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                          },
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.all(AppDimensions.padding10),
-                          child: GestureDetector(
-                            child: Text(
-                              'general.not_registered'.tr(),
-                              style: AppTextStyle.rubicRegular20,
-                            ),
-                            onTap: () => context.read<AuthBloc>().add(
-                                  UpdateUserRegistrationStatusEvent(
-                                    isUserRegister: false,
-                                  ),
-                                ),
+      create: (context) => AuthBloc(
+        authRepository: serviceLocator.get<AuthRepository>(),
+      ),
+      child: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          return Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: AppColors.darkBlue,
+            body: Column(
+              children: <Widget>[
+                _logo,
+                state.isUserRegistered
+                    ? Column(
+                        children: <Widget>[
+                          _authForm(
+                            label: 'general.login_uppercase'.tr(),
+                            context: context,
+                            func: () {
+                              context.read<AuthBloc>().add(
+                                    SignInWithEmailAndPasswordEvent(
+                                      email: _emailController.text,
+                                      password: _passwordController.text,
+                                    ),
+                                  );
+                            },
                           ),
-                        )
-                      ],
-                    )
-                  : Column(
-                      children: <Widget>[
-                        _authForm(
-                          label: 'general.register_uppercase'.tr(),
-                          context: context,
-                          func: () {
-                            context.read<AuthBloc>().add(
-                                  RegisterWithEmailAndPasswordEvent(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                          },
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.all(AppDimensions.padding10),
-                          child: GestureDetector(
-                            child: Text(
-                              'general.already_registered'.tr(),
-                              style: AppTextStyle.rubicRegular20,
+                          Padding(
+                            padding: const EdgeInsets.all(
+                              AppDimensions.padding10,
                             ),
-                            onTap: () => context.read<AuthBloc>().add(
-                                  UpdateUserRegistrationStatusEvent(
-                                    isUserRegister: true,
-                                  ),
-                                ),
+                            child: GestureDetector(
+                              child: Text(
+                                'general.not_registered'.tr(),
+                                style: AppTextStyle.rubicRegular20,
+                              ),
+                              onTap: () {
+                                context.read<AuthBloc>().add(
+                                      UpdateUserRegistrationStatusEvent(
+                                        isUserRegister: false,
+                                      ),
+                                    );
+                              },
+                            ),
+                          )
+                        ],
+                      )
+                    : Column(
+                        children: <Widget>[
+                          _authForm(
+                            label: 'general.register_uppercase'.tr(),
+                            context: context,
+                            func: () {
+                              context.read<AuthBloc>().add(
+                                    RegisterWithEmailAndPasswordEvent(
+                                      email: _emailController.text,
+                                      password: _passwordController.text,
+                                    ),
+                                  );
+                            },
                           ),
-                        )
-                      ],
-                    ),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppDimensions.padding20,
-                  vertical: AppDimensions.padding10,
+                          Padding(
+                            padding: const EdgeInsets.all(
+                              AppDimensions.padding10,
+                            ),
+                            child: GestureDetector(
+                              child: Text(
+                                'general.already_registered'.tr(),
+                                style: AppTextStyle.rubicRegular20,
+                              ),
+                              onTap: () {
+                                context.read<AuthBloc>().add(
+                                      UpdateUserRegistrationStatusEvent(
+                                        isUserRegister: true,
+                                      ),
+                                    );
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding20,
+                    vertical: AppDimensions.padding10,
+                  ),
+                  child: Divider(color: AppColors.textHintColor),
                 ),
-                child: Divider(color: AppColors.textHintColor),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        AppDimensions.borderRadius16,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.borderRadius16,
+                        ),
+                        color: AppColors.white,
                       ),
-                      color: AppColors.white,
-                    ),
-                    child: IconButton(
-                      onPressed: () => context.read<AuthBloc>().add(
-                            SignInWithGoogleEvent(),
-                          ),
-                      icon: Image.asset(
-                        'assets/images/google_icon.png',
-                        height: AppDimensions.imageSize40,
-                        width: AppDimensions.imageSize40,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        AppDimensions.borderRadius16,
-                      ),
-                      color: AppColors.white,
-                    ),
-                    child: IconButton(
-                      onPressed: () => context.read<AuthBloc>().add(
-                            SignInWithAppleEvent(),
-                          ),
-                      icon: Image.asset(
-                        'assets/images/apple_logo.png',
-                        height: AppDimensions.imageSize40,
-                        width: AppDimensions.imageSize40,
+                      child: IconButton(
+                        onPressed: () => context.read<AuthBloc>().add(
+                              SignInWithGoogleEvent(),
+                            ),
+                        icon: Image.asset(
+                          'assets/images/google_icon.png',
+                          height: AppDimensions.imageSize40,
+                          width: AppDimensions.imageSize40,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        AppDimensions.borderRadius16,
+                    const SizedBox(width: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.borderRadius16,
+                        ),
+                        color: AppColors.white,
                       ),
-                      color: AppColors.white,
-                    ),
-                    child: IconButton(
-                      onPressed: () => context.read<AuthBloc>().add(
-                            SignInWithFacebookEvent(),
-                          ),
-                      icon: Image.asset(
-                        'assets/images/facebook_logo.png',
-                        height: AppDimensions.imageSize40,
-                        width: AppDimensions.imageSize40,
+                      child: IconButton(
+                        onPressed: () => context.read<AuthBloc>().add(
+                              SignInWithAppleEvent(),
+                            ),
+                        icon: Image.asset(
+                          'assets/images/apple_logo.png',
+                          height: AppDimensions.imageSize40,
+                          width: AppDimensions.imageSize40,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        );
-      }),
+                    const SizedBox(width: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.borderRadius16,
+                        ),
+                        color: AppColors.white,
+                      ),
+                      child: IconButton(
+                        onPressed: () => context.read<AuthBloc>().add(
+                              SignInWithFacebookEvent(),
+                            ),
+                        icon: Image.asset(
+                          'assets/images/facebook_logo.png',
+                          height: AppDimensions.imageSize40,
+                          width: AppDimensions.imageSize40,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -185,7 +194,9 @@ class AuthorizationPage extends StatelessWidget {
     bool obscure,
   ) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.padding20),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDimensions.padding20,
+      ),
       child: TextField(
         controller: textEditingController,
         obscureText: obscure,
@@ -239,7 +250,9 @@ class AuthorizationPage extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: AppDimensions.padding20),
+          padding: const EdgeInsets.only(
+            bottom: AppDimensions.padding20,
+          ),
           child: _inputBar(
             const Icon(Icons.lock),
             'general.password_uppercase'.tr(),
@@ -261,9 +274,9 @@ class AuthorizationPage extends StatelessWidget {
     );
   }
 
-  Widget _loginButton(String textLabel, VoidCallback func) {
+  Widget _loginButton(String textLabel, VoidCallback onTap) {
     return TextButton(
-      onPressed: () => func(),
+      onPressed: onTap,
       child: Text(
         textLabel,
         style: AppTextStyle.rubicRegularLoginButton20,
