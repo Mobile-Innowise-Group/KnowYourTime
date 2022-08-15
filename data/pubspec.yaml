@@ -8,6 +8,9 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  flutter_facebook_auth: ^4.4.0+1
+  crypto: ^3.0.2
+  sign_in_with_apple: ^4.1.0
   google_sign_in: ^5.4.0
   firebase_auth: ^3.5.0
   firebase_core: ^1.20.0
