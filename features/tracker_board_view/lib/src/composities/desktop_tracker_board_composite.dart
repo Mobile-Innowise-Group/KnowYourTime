@@ -25,7 +25,7 @@ class DesktopTimeTrackingBoardComposite extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Column(
-                  children: [
+                  children: <Widget>[
                     DesktopProfileMenu(
                       avatar: const AssetImage(AppImages.jeremy),
                       firstName: 'Jeremy',
