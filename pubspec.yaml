@@ -50,6 +50,7 @@ flutter:
     - assets/images/google_icon.png
     - assets/images/apple_logo.png
     - assets/images/facebook_logo.png
+    - assets/images/calendar_icon.png
     # icons
     - assets/icons/icon-ellipsis.svg
     - assets/icons/icon-exercise.svg
