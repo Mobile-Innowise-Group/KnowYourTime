@@ -29,6 +29,9 @@
     "cant_register_toast": "Can't Register you! Please check your email/password",
     "logout": "Log out",
     "continue_with_apple": "Continue with Apple",
-    "label_uppercase": "KNOW YOUR TIME"
+    "label_uppercase": "KNOW YOUR TIME",
+    "cant_be_empty": "Can't be empty",
+    "too_short": "Too short",
+    "do_not_use_the_invalid_symbol": "Please don't use the @ char"
   }
 }

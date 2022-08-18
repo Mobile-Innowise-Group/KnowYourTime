@@ -5,16 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:know_your_time/screens/auth/bloc/auth_bloc.dart';
 import 'package:know_your_time/screens/auth/bloc/auth_event.dart';
 import 'package:know_your_time/screens/auth/bloc/auth_state.dart';
+import 'package:know_your_time/screens/auth/widgets/auth_form/login_form.dart';
+import 'package:know_your_time/screens/auth/widgets/auth_form/registration_form.dart';
+import 'package:know_your_time/screens/auth/widgets/logo_with_label.dart';
 
 class MobileAuthorizationPage extends StatelessWidget {
   MobileAuthorizationPage({Key? key}) : super(key: key);
-
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final _loginFormKey = GlobalKey<FormState>();
-  final _registerFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,27 +25,26 @@ class MobileAuthorizationPage extends StatelessWidget {
             backgroundColor: AppColors.darkBlue,
             body: Column(
               children: <Widget>[
-                _logoWithLabel,
+                const Spacer(flex: 2),
+                LogoWithLabel(),
                 state.isUserRegistered
-                    ? Column(
-                        children: <Widget>[
-                          _loginForm(
-                            label: 'general.login_uppercase'.tr(),
-                            context: context,
-                            func: () {
-                              context.read<AuthBloc>().add(
-                                    SignInWithEmailAndPasswordEvent(
-                                      email: _emailController.text,
-                                      password: _passwordController.text,
-                                    ),
-                                  );
-                            },
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(
-                              AppDimensions.padding10,
+                    ? Expanded(
+                        flex: 7,
+                        child: Column(
+                          children: <Widget>[
+                            LoginForm(
+                              label: 'general.login_uppercase'.tr(),
+                              context: context,
+                              onTap: (String email, String password) {
+                                context.read<AuthBloc>().add(
+                                      SignInWithEmailAndPasswordEvent(
+                                        email: email,
+                                        password: password,
+                                      ),
+                                    );
+                              },
                             ),
-                            child: GestureDetector(
+                            GestureDetector(
                               child: Text(
                                 'general.not_registered'.tr(),
                                 style: AppTextStyle.rubicItalic20,
@@ -62,30 +57,101 @@ class MobileAuthorizationPage extends StatelessWidget {
                                     );
                               },
                             ),
-                          ),
-                        ],
-                      )
-                    : Column(
-                        children: <Widget>[
-                          _registerForm(
-                            label: 'general.register_uppercase'.tr(),
-                            context: context,
-                            func: () {
-                              context.read<AuthBloc>().add(
-                                    RegisterWithEmailAndPasswordEvent(
-                                      email: _emailController.text,
-                                      password: _passwordController.text,
-                                      firstName: _firstNameController.text,
-                                      lastName: _lastNameController.text,
-                                    ),
-                                  );
-                            },
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(
-                              AppDimensions.padding10,
+                            const SizedBox(height: AppDimensions.padding10),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: AppDimensions.padding20,
+                              ),
+                              child: Divider(color: AppColors.textHintColor),
                             ),
-                            child: GestureDetector(
+                            const SizedBox(height: AppDimensions.padding10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppDimensions.borderRadius16,
+                                    ),
+                                    color: AppColors.white,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        context.read<AuthBloc>().add(
+                                              SignInWithGoogleEvent(),
+                                            ),
+                                    icon: Image.asset(
+                                      'assets/images/google_icon.png',
+                                      height: AppDimensions.imageSize40,
+                                      width: AppDimensions.imageSize40,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppDimensions.borderRadius16,
+                                    ),
+                                    color: AppColors.white,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        context.read<AuthBloc>().add(
+                                              SignInWithAppleEvent(),
+                                            ),
+                                    icon: Image.asset(
+                                      'assets/images/apple_logo.png',
+                                      height: AppDimensions.imageSize40,
+                                      width: AppDimensions.imageSize40,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppDimensions.borderRadius16,
+                                    ),
+                                    color: AppColors.white,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        context.read<AuthBloc>().add(
+                                              SignInWithFacebookEvent(),
+                                            ),
+                                    icon: Image.asset(
+                                      'assets/images/facebook_logo.png',
+                                      height: AppDimensions.imageSize40,
+                                      width: AppDimensions.imageSize40,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    : Expanded(
+                        flex: 12,
+                        child: Column(
+                          children: <Widget>[
+                            RegistrationForm(
+                              label: 'general.register_uppercase'.tr(),
+                              context: context,
+                              onTap: (String email, String password,
+                                  String firstName, String lastName) {
+                                context.read<AuthBloc>().add(
+                                      RegisterWithEmailAndPasswordEvent(
+                                        email: email,
+                                        password: password,
+                                        firstName: firstName,
+                                        lastName: lastName,
+                                      ),
+                                    );
+                              },
+                            ),
+                            GestureDetector(
                               child: Text(
                                 'general.already_registered'.tr(),
                                 style: AppTextStyle.rubicItalic20,
@@ -98,355 +164,86 @@ class MobileAuthorizationPage extends StatelessWidget {
                                     );
                               },
                             ),
-                          ),
-                        ],
-                      ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppDimensions.padding20,
-                    vertical: AppDimensions.padding10,
-                  ),
-                  child: Divider(color: AppColors.textHintColor),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.borderRadius16,
-                        ),
-                        color: AppColors.white,
-                      ),
-                      child: IconButton(
-                        onPressed: () => context.read<AuthBloc>().add(
-                              SignInWithGoogleEvent(),
+                            const SizedBox(height: AppDimensions.padding10),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: AppDimensions.padding20,
+                              ),
+                              child: Divider(color: AppColors.textHintColor),
                             ),
-                        icon: Image.asset(
-                          'assets/images/google_icon.png',
-                          height: AppDimensions.imageSize40,
-                          width: AppDimensions.imageSize40,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.borderRadius16,
-                        ),
-                        color: AppColors.white,
-                      ),
-                      child: IconButton(
-                        onPressed: () => context.read<AuthBloc>().add(
-                              SignInWithAppleEvent(),
+                            const SizedBox(height: AppDimensions.padding10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppDimensions.borderRadius16,
+                                    ),
+                                    color: AppColors.white,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        context.read<AuthBloc>().add(
+                                              SignInWithGoogleEvent(),
+                                            ),
+                                    icon: Image.asset(
+                                      'assets/images/google_icon.png',
+                                      height: AppDimensions.imageSize40,
+                                      width: AppDimensions.imageSize40,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppDimensions.borderRadius16,
+                                    ),
+                                    color: AppColors.white,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        context.read<AuthBloc>().add(
+                                              SignInWithAppleEvent(),
+                                            ),
+                                    icon: Image.asset(
+                                      'assets/images/apple_logo.png',
+                                      height: AppDimensions.imageSize40,
+                                      width: AppDimensions.imageSize40,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppDimensions.borderRadius16,
+                                    ),
+                                    color: AppColors.white,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        context.read<AuthBloc>().add(
+                                              SignInWithFacebookEvent(),
+                                            ),
+                                    icon: Image.asset(
+                                      'assets/images/facebook_logo.png',
+                                      height: AppDimensions.imageSize40,
+                                      width: AppDimensions.imageSize40,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                        icon: Image.asset(
-                          'assets/images/apple_logo.png',
-                          height: AppDimensions.imageSize40,
-                          width: AppDimensions.imageSize40,
+                          ],
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.borderRadius16,
-                        ),
-                        color: AppColors.white,
-                      ),
-                      child: IconButton(
-                        onPressed: () => context.read<AuthBloc>().add(
-                              SignInWithFacebookEvent(),
-                            ),
-                        icon: Image.asset(
-                          'assets/images/facebook_logo.png',
-                          height: AppDimensions.imageSize40,
-                          width: AppDimensions.imageSize40,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                const Spacer(flex: 2),
               ],
             ),
           );
         },
-      ),
-    );
-  }
-
-  Widget get _logoWithLabel {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: AppDimensions.padding140,
-        bottom: AppDimensions.padding20,
-      ),
-      child: Align(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/calendar_icon.png',
-              width: AppDimensions.imageSize40,
-              height: AppDimensions.imageSize40,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              'general.label_uppercase'.tr(),
-              style: AppTextStyle.rubicRegularMobileLabel,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  String? Function(String?)? get _emailValidator {
-    return (text) {
-      if (text == null || text.isEmpty) {
-        return 'Can\'t be empty';
-      }
-      if (text.length < 4) {
-        return 'Too short';
-      }
-      return null;
-    };
-  }
-
-  String? Function(String?)? get _passwordValidator {
-    return (text) {
-      if (text == null || text.isEmpty) {
-        return 'Can\'t be empty';
-      } else if (text.length < 8) {
-        return 'Too short';
-      } else if (text.contains('@')) {
-        return 'Please don\'t use the @ char.';
-      }
-      return null;
-    };
-  }
-
-  String? Function(String?)? get _nameValidator {
-    return (text) {
-      if (text == null || text.isEmpty) {
-        return 'Can\'t be empty';
-      } else if (text.length < 3) {
-        return 'Too short';
-      } else if (text.contains('@')) {
-        return 'Please don\'t use the @ char.';
-      }
-      return null;
-    };
-  }
-
-  Widget _inputBar(
-    String hintText,
-    TextEditingController textEditingController,
-    String? Function(String?)? validator,
-    bool obscure,
-    int maxLength,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: TextFormField(
-        maxLength: maxLength,
-        validator: validator,
-        controller: textEditingController,
-        obscureText: obscure,
-        style: AppTextStyle.rubicRegular20,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 4,
-            horizontal: 8,
-          ),
-          counterText: '',
-          hintStyle: AppTextStyle.rubicRegularHint20,
-          hintText: hintText,
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.white,
-              width: 3,
-            ),
-          ),
-          errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.red,
-              width: 1,
-            ),
-          ),
-          focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.red,
-              width: 1,
-            ),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.white54,
-              width: 1,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _loginForm({
-    required String label,
-    required BuildContext context,
-    required VoidCallback func,
-  }) {
-    return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: _loginFormKey,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppDimensions.padding20,
-            ),
-            child: _inputBar(
-              'general.email'.tr(),
-              _emailController,
-              _emailValidator,
-              false,
-              40,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppDimensions.padding20,
-            ),
-            child: _inputBar(
-              'general.password'.tr(),
-              _passwordController,
-              _passwordValidator,
-              true,
-              30,
-            ),
-          ),
-          const SizedBox(height: AppDimensions.padding20),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppDimensions.borderRadius4),
-              color: AppColors.white,
-            ),
-            height: 50,
-            width: MediaQuery.of(context).size.width - 40,
-            child: TextButton(
-              onPressed: () {
-                if (_loginFormKey.currentState!.validate()) {
-                  context.read<AuthBloc>().add(
-                        SignInWithEmailAndPasswordEvent(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                        ),
-                      );
-                } else {
-                  return null;
-                }
-              },
-              child: Text(
-                'general.login_uppercase'.tr(),
-                style: AppTextStyle.rubicRegularLoginButton20,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _registerForm({
-    required String label,
-    required BuildContext context,
-    required VoidCallback func,
-  }) {
-    return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: _registerFormKey,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppDimensions.padding20,
-            ),
-            child: _inputBar(
-              'general.first_name'.tr(),
-              _firstNameController,
-              _nameValidator,
-              false,
-              30,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppDimensions.padding20,
-            ),
-            child: _inputBar(
-              'general.last_name'.tr(),
-              _lastNameController,
-              _nameValidator,
-              false,
-              30,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppDimensions.padding20,
-            ),
-            child: _inputBar(
-              'general.email'.tr(),
-              _emailController,
-              _emailValidator,
-              false,
-              40,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppDimensions.padding20,
-            ),
-            child: _inputBar(
-              'general.password'.tr(),
-              _passwordController,
-              _passwordValidator,
-              true,
-              30,
-            ),
-          ),
-          const SizedBox(height: AppDimensions.padding20),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppDimensions.borderRadius4),
-              color: AppColors.white,
-            ),
-            height: 50,
-            width: MediaQuery.of(context).size.width - 40,
-            child: TextButton(
-              onPressed: () {
-                if (_registerFormKey.currentState!.validate()) {
-                  context.read<AuthBloc>().add(
-                        RegisterWithEmailAndPasswordEvent(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                          firstName: _firstNameController.text,
-                          lastName: _lastNameController.text,
-                        ),
-                      );
-                } else {
-                  return null;
-                }
-              },
-              child: Text(
-                'general.register_uppercase'.tr(),
-                style: AppTextStyle.rubicRegularLoginButton20,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
