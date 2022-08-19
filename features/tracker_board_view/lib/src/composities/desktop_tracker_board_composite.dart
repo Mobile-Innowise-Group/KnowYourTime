@@ -32,19 +32,22 @@ class DesktopTimeTrackingBoardComposite extends StatelessWidget {
                       lastName: 'Robson',
                       selectedPeriodTimeType: state.periodTimeType,
                       onDailyPressed: () {
-                        BlocProvider.of<TrackerBoardBloc>(context,
-                                listen: false)
-                            .add(const PressDailyButton());
+                        BlocProvider.of<TrackerBoardBloc>(
+                          context,
+                          listen: false,
+                        ).add(const PressDailyButton());
                       },
                       onMonthlyPressed: () {
-                        BlocProvider.of<TrackerBoardBloc>(context,
-                                listen: false)
-                            .add(const PressMonthlyButton());
+                        BlocProvider.of<TrackerBoardBloc>(
+                          context,
+                          listen: false,
+                        ).add(const PressMonthlyButton());
                       },
                       onWeeklyPressed: () {
-                        BlocProvider.of<TrackerBoardBloc>(context,
-                                listen: false)
-                            .add(const PressWeeklyButton());
+                        BlocProvider.of<TrackerBoardBloc>(
+                          context,
+                          listen: false,
+                        ).add(const PressWeeklyButton());
                       },
                     ),
                     const SizedBox(height: AppDimensions.padding10),
