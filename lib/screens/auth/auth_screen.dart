@@ -4,8 +4,8 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:know_your_time/screens/auth/bloc/auth_bloc.dart';
 import 'package:know_your_time/screens/auth/bloc/auth_state.dart';
-import 'package:know_your_time/screens/auth/desktop_auth_screen.dart';
 import 'package:know_your_time/screens/auth/mobile_auth_screen.dart';
+import 'package:know_your_time/screens/auth/web_auth_screen.dart';
 
 class AuthorizationPage extends StatelessWidget {
   AuthorizationPage({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _AuthorizationPage extends StatelessWidget {
         builder: (context, state) {
           return AdaptiveScreen(
             mobile: MobileAuthorizationPage(),
-            desktop: DesktopAuthorizationPage(),
+            desktop: WebAuthorizationPage(),
           );
         },
       ),

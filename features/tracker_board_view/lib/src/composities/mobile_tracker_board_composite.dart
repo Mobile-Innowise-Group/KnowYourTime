@@ -1,6 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:data/src/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
+
 import 'package:tracker_board_view/src/bloc/tracker_board_bloc.dart';
 import 'package:tracker_board_view/src/models/tracker_card_type.dart';
 import 'package:tracker_board_view/src/widgets/profile_menu/mobile_profile_menu.dart';

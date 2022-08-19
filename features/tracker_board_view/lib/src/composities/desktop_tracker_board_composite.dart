@@ -25,7 +25,7 @@ class DesktopTimeTrackingBoardComposite extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Column(
-                  children: [
+                  children: <Widget>[
                     DesktopProfileMenu(
                       avatar: const AssetImage(AppImages.jeremy),
                       firstName: 'Jeremy',
@@ -49,9 +49,7 @@ class DesktopTimeTrackingBoardComposite extends StatelessWidget {
                     ),
                     const SizedBox(height: AppDimensions.padding10),
                     TextButton.icon(
-                      onPressed: () {
-                        AuthService().signOut();
-                      },
+                      onPressed: () => AuthService().signOut(),
                       icon: const Icon(
                         Icons.logout,
                         color: Colors.white,

@@ -29,6 +29,14 @@ class AppTextStyle {
     color: _textColor,
   );
 
+  static const TextStyle rubicItalic20 = TextStyle(
+    fontFamily: _rubicFamily,
+    fontStyle: FontStyle.italic,
+    fontWeight: FontWeight.w400,
+    fontSize: 20.0,
+    color: _textColor,
+  );
+
   static const TextStyle rubicRegularHint20 = TextStyle(
     fontFamily: _rubicFamily,
     fontWeight: FontWeight.w400,
