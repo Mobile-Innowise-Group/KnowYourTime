@@ -8,21 +8,26 @@ class ActivityFirebaseProvider implements ActivityProvider {
 
   @override
   Stream<List<Activity>> observeAllByUserId(String userId) {
-    return _fireStore
-        .collection(COLLECTION_ACTIVITY)
-        .snapshots()
-        .map((QuerySnapshot<Map<String, dynamic>> event) {
+    return _fireStore.collection(COLLECTION_ACTIVITY).snapshots().map(
+      (QuerySnapshot<Map<String, dynamic>> event) {
+        return event.docs
+            .where(
+              (QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+                final Map<String, dynamic> docMap = doc.data();
 
-      return event.docs
-          .where((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-            final Map<String, dynamic> docMap = doc.data();
-
-            final docUserId = docMap[FIELD_USER_ID];
-            return docUserId == userId;
-          })
-          .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
-              ActivityFirebaseToDataMapper.fromMap(map: doc.data(), id: doc.id))
-          .toList();
-    });
+                final docUserId = docMap[FIELD_USER_ID];
+                return docUserId == userId;
+              },
+            )
+            .map(
+              (QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+                  ActivityFirebaseToDataMapper.fromMap(
+                map: doc.data(),
+                id: doc.id,
+              ),
+            )
+            .toList();
+      },
+    );
   }
 }

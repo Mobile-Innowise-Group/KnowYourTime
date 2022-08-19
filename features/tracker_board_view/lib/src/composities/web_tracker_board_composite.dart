@@ -21,9 +21,11 @@ class WebTimeTrackingBoardComposite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, PeriodActivities> mappedActivities = _groupByCategoryName(
-        PeriodActivities(
-            current: state.currentPeriodActivities,
-            previous: state.previousPeriodActivities));
+      PeriodActivities(
+        current: state.currentPeriodActivities,
+        previous: state.previousPeriodActivities,
+      ),
+    );
     final List<String> categoryNames = mappedActivities.keys.toList();
     return Center(
       child: SingleChildScrollView(
@@ -44,17 +46,23 @@ class WebTimeTrackingBoardComposite extends StatelessWidget {
                       onDailyPressed: () {
                         BlocProvider.of<TrackerBoardBloc>(context,
                                 listen: false)
-                            .add(const PressDailyButton());
+                            .add(
+                          const PressDailyButton(),
+                        );
                       },
                       onMonthlyPressed: () {
                         BlocProvider.of<TrackerBoardBloc>(context,
                                 listen: false)
-                            .add(const PressMonthlyButton());
+                            .add(
+                          const PressMonthlyButton(),
+                        );
                       },
                       onWeeklyPressed: () {
                         BlocProvider.of<TrackerBoardBloc>(context,
                                 listen: false)
-                            .add(const PressWeeklyButton());
+                            .add(
+                          const PressWeeklyButton(),
+                        );
                       },
                     ),
                     const SizedBox(height: AppDimensions.padding10),
@@ -112,7 +120,7 @@ class WebTimeTrackingBoardComposite extends StatelessWidget {
       PeriodActivities periodActivities) {
     final Set<String> allCategoryNames = <List<Activity>>[
       periodActivities.previous,
-      periodActivities.current
+      periodActivities.current,
     ]
         .expand((List<Activity> e) => e)
         .map((Activity act) => act.categoryName)

@@ -1,5 +1,5 @@
 import 'package:data/src/model/category.dart';
 
-abstract class CategoryProvider{
+abstract class CategoryProvider {
   Future<Category?> getById(String id);
 }

@@ -30,11 +30,13 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
     on<GetUser>(_onGetUser);
     on<Logout>(_onLogout);
 
-    allActivitiesListener = _activityRepository
-        .observeAll()
-        .listen((Future<List<Activity>> eventActivities) async {
-      add(ActivitiesUpdated(allActivities: await eventActivities));
-    });
+    allActivitiesListener = _activityRepository.observeAll().listen(
+      (Future<List<Activity>> eventActivities) async {
+        add(
+          ActivitiesUpdated(allActivities: await eventActivities),
+        );
+      },
+    );
   }
 
   Future<void> _onPressDailyButton(
@@ -118,43 +120,59 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
 
     switch (periodTimeType) {
       case PeriodTimeType.daily:
-        final DateTime yesterday = now.subtract(Duration(days: 1));
+        final DateTime yesterday = now.subtract(
+          const Duration(days: 1),
+        );
 
         return PeriodActivities(
-            current: allActivities
-                .where(
-                    (Activity activity) => activity.createdAt.isSameDayAs(now))
-                .toList(),
-            previous: allActivities
-                .where((Activity activity) =>
-                    activity.createdAt.isSameDayAs(yesterday))
-                .toList());
+          current: allActivities
+              .where(
+                (Activity activity) => activity.createdAt.isSameDayAs(now),
+              )
+              .toList(),
+          previous: allActivities
+              .where(
+                (Activity activity) =>
+                    activity.createdAt.isSameDayAs(yesterday),
+              )
+              .toList(),
+        );
 
       case PeriodTimeType.weekly:
-        final DateTime previousWeek = now.subtract(Duration(days: 7));
+        final DateTime previousWeek = now.subtract(
+          const Duration(days: 7),
+        );
 
         return PeriodActivities(
-            current: allActivities
-                .where(
-                    (Activity activity) => activity.createdAt.isSameWeekAs(now))
-                .toList(),
-            previous: allActivities
-                .where((Activity activity) =>
-                    activity.createdAt.isSameWeekAs(previousWeek))
-                .toList());
+          current: allActivities
+              .where(
+                (Activity activity) => activity.createdAt.isSameWeekAs(now),
+              )
+              .toList(),
+          previous: allActivities
+              .where(
+                (Activity activity) =>
+                    activity.createdAt.isSameWeekAs(previousWeek),
+              )
+              .toList(),
+        );
 
       case PeriodTimeType.monthly:
         final DateTime previousMonthStart = DateTime(now.year, now.month - 1);
 
         return PeriodActivities(
-            current: allActivities
-                .where((Activity activity) =>
-                    activity.createdAt.isSameMonthAs(now))
-                .toList(),
-            previous: allActivities
-                .where((Activity activity) =>
-                    activity.createdAt.isSameMonthAs(previousMonthStart))
-                .toList());
+          current: allActivities
+              .where(
+                (Activity activity) => activity.createdAt.isSameMonthAs(now),
+              )
+              .toList(),
+          previous: allActivities
+              .where(
+                (Activity activity) =>
+                    activity.createdAt.isSameMonthAs(previousMonthStart),
+              )
+              .toList(),
+        );
     }
   }
 
@@ -173,8 +191,9 @@ extension DateTimeExt on DateTime {
 
   bool isSameWeekAs(DateTime other) {
     final DateTime startOfTheWeek = subtract(Duration(days: weekday - 1));
-    final DateTime otherStartOfTheWeek =
-        other.subtract(Duration(days: other.weekday - 1));
+    final DateTime otherStartOfTheWeek = other.subtract(
+      Duration(days: other.weekday - 1),
+    );
     return startOfTheWeek.isSameDayAs(otherStartOfTheWeek);
   }
 

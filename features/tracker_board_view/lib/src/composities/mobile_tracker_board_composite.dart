@@ -21,9 +21,11 @@ class MobileTimeTrackingBoardComposite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, PeriodActivities> mappedActivities = _groupByCategoryName(
-        PeriodActivities(
-            current: state.currentPeriodActivities,
-            previous: state.previousPeriodActivities));
+      PeriodActivities(
+        current: state.currentPeriodActivities,
+        previous: state.previousPeriodActivities,
+      ),
+    );
     final List<String> categoryNames = mappedActivities.keys.toList();
     return Padding(
       padding: const EdgeInsets.only(
@@ -40,16 +42,19 @@ class MobileTimeTrackingBoardComposite extends StatelessWidget {
               lastName: 'Popov',
               selectedPeriodTimeType: state.periodTimeType,
               onDailyPressed: () {
-                BlocProvider.of<TrackerBoardBloc>(context, listen: false)
-                    .add(const PressDailyButton());
+                BlocProvider.of<TrackerBoardBloc>(context, listen: false).add(
+                  const PressDailyButton(),
+                );
               },
               onMonthlyPressed: () {
-                BlocProvider.of<TrackerBoardBloc>(context, listen: false)
-                    .add(const PressMonthlyButton());
+                BlocProvider.of<TrackerBoardBloc>(context, listen: false).add(
+                  const PressMonthlyButton(),
+                );
               },
               onWeeklyPressed: () {
-                BlocProvider.of<TrackerBoardBloc>(context, listen: false)
-                    .add(const PressWeeklyButton());
+                BlocProvider.of<TrackerBoardBloc>(context, listen: false).add(
+                  const PressWeeklyButton(),
+                );
               },
             ),
             ...categoryNames.map(
@@ -67,7 +72,7 @@ class MobileTimeTrackingBoardComposite extends StatelessWidget {
             ),
             TextButton.icon(
               onPressed: onLogout,
-              icon: Icon(Icons.logout, color: Colors.white),
+              icon: const Icon(Icons.logout, color: Colors.white),
               label: Text(
                 'general.logout'.tr(),
                 style: AppTextStyle.rubicRegular20,
@@ -83,7 +88,7 @@ class MobileTimeTrackingBoardComposite extends StatelessWidget {
       PeriodActivities periodActivities) {
     final Set<String> allCategoryNames = <List<Activity>>[
       periodActivities.previous,
-      periodActivities.current
+      periodActivities.current,
     ]
         .expand((List<Activity> e) => e)
         .map((Activity act) => act.categoryName)

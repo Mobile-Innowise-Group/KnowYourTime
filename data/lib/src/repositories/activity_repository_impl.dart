@@ -22,28 +22,33 @@ class ActivityRepositoryImpl implements ActivityRepository {
   Stream<Future<List<Activity>>> observeAll() {
     return activityProvider
         .observeAllByUserId((userProvider.getCurrent())!.id)
-        .map((List<data.Activity> dataActivityList) async {
-      final List<String> categoryIds = dataActivityList
-          .map((data.Activity activity) => activity.category_id)
-          .toSet()
-          .toList();
-      final List<Category> categories = (await Future.wait(categoryIds.map(
-              (String categoryId) => categoryProvider.getById(categoryId))))
-          .whereType<Category>()
-          .toList();
-      //data to domain
-      return dataActivityList
-          .where((data.Activity activity) => categories
-              .map((Category cat) => cat.id)
-              .contains(activity.category_id))
-          .map((data.Activity activity) => Activity(
-              categoryName: categories
-                  .firstWhere(
-                      (Category element) => element.id == activity.category_id)
-                  .name,
-              createdAt: activity.created_at,
-              duration: activity.duration))
-          .toList();
-    });
+        .map(
+      (List<data.Activity> dataActivityList) async {
+        final List<String> categoryIds = dataActivityList
+            .map((data.Activity activity) => activity.categoryId)
+            .toSet()
+            .toList();
+        final List<Category> categories = (await Future.wait(
+          categoryIds.map(
+            (String categoryId) => categoryProvider.getById(categoryId),
+          ),
+        ))
+            .whereType<Category>()
+            .toList();
+        //data to domain
+        return dataActivityList
+            .where((data.Activity activity) => categories
+                .map((Category cat) => cat.id)
+                .contains(activity.categoryId))
+            .map((data.Activity activity) => Activity(
+                categoryName: categories
+                    .firstWhere(
+                        (Category element) => element.id == activity.categoryId)
+                    .name,
+                createdAt: activity.createdAt,
+                duration: activity.duration))
+            .toList();
+      },
+    );
   }
 }

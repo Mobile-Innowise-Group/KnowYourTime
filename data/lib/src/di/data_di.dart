@@ -11,8 +11,6 @@ import 'package:data/src/repositories/user_repository_impl.dart';
 import 'package:domain/domain.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import '../repositories/auth_repository_impl.dart';
-
 class DataDi {
   final GetIt _serviceLocator;
 

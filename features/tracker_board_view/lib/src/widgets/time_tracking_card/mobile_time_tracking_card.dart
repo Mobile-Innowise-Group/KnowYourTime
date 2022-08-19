@@ -107,8 +107,10 @@ class MobileTrackerCard extends StatelessWidget {
 
   static Duration _durationOfActivities(List<Activity> activities) {
     return activities.map((Activity act) => act.duration).fold(
-        const Duration(),
-        (Duration previousValue, Duration element) =>
-            Duration(seconds: previousValue.inSeconds + element.inSeconds));
+          const Duration(),
+          (Duration previousValue, Duration element) => Duration(
+            seconds: previousValue.inSeconds + element.inSeconds,
+          ),
+        );
   }
 }

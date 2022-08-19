@@ -23,7 +23,7 @@ class AuthProvider {
       );
       final User? user = result.user;
       if (user != null) {
-        return AuthUserAuthMapper.fromFirebase(user);
+        return AuthUserMapper.fromFirebase(user);
       } else {
         throw Exception('No user_inno');
       }
@@ -43,7 +43,7 @@ class AuthProvider {
       );
       final User? user = result.user;
       if (user != null) {
-        return AuthUserAuthMapper.fromFirebase(user);
+        return AuthUserMapper.fromFirebase(user);
       } else {
         throw Exception('No user_inno');
       }
@@ -61,7 +61,7 @@ class AuthProvider {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      return AuthUserAuthMapper.fromFirebase(
+      return AuthUserMapper.fromFirebase(
         (await FirebaseAuth.instance.signInWithCredential(credential)).user!,
       );
     } catch (e) {
@@ -105,7 +105,7 @@ class AuthProvider {
         rawNonce: rawNonce,
       );
 
-      return AuthUserAuthMapper.fromFirebase(
+      return AuthUserMapper.fromFirebase(
           (await FirebaseAuth.instance.signInWithCredential(oauthCredential))
               .user!);
     } catch (_) {
@@ -122,7 +122,7 @@ class AuthProvider {
               .signInWithCredential(facebookAuthCredential))
           .user!;
 
-      return AuthUserAuthMapper.fromFirebase(fbUser);
+      return AuthUserMapper.fromFirebase(fbUser);
     } catch (_) {
       return null;
     }
@@ -133,7 +133,7 @@ class AuthProvider {
   Stream<data.User?> get currentUser {
     return _fAuth.authStateChanges().map(
       (User? user) {
-        return user != null ? AuthUserAuthMapper.fromFirebase(user) : null;
+        return user != null ? AuthUserMapper.fromFirebase(user) : null;
       },
     );
   }

@@ -27,7 +27,9 @@ class UserFirebaseProvider implements UserProvider {
     final DocumentReference<Map<String, dynamic>> doc =
         _fireStore.collection(COLLECTION_USER).doc();
 
-    await doc.set(<String, dynamic>{'id': id, 'full_name': fullName});
+    await doc.set(
+      <String, dynamic>{'id': id, 'full_name': fullName},
+    );
   }
 
   @override
@@ -40,7 +42,7 @@ class UserFirebaseProvider implements UserProvider {
 
     return data.User(
       id: user.uid,
-      fullName: user.displayName ?? 'Vasya',
+      fullName: user.displayName ?? 'Sanya',
     );
   }
 }

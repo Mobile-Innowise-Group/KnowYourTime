@@ -12,7 +12,6 @@ class ActivityFirebaseToDataMapper {
     required Map<String, dynamic> map,
     required String id,
   }) {
-
     if (<String>{
       FIELD_CREATED_AT,
       FIELD_CATEGORY_ID,
@@ -20,11 +19,11 @@ class ActivityFirebaseToDataMapper {
       FIELD_USER_ID
     }.every((String field) => map.keys.contains(field))) {
       return data.Activity(
-        category_id: map[FIELD_CATEGORY_ID] as String,
-        created_at:
+        categoryId: map[FIELD_CATEGORY_ID] as String,
+        createdAt:
             DateTime.fromMillisecondsSinceEpoch(map[FIELD_CREATED_AT] as int),
         duration: Duration(hours: map[FIELD_DURATION_IN_HOURS] as int),
-        user_id: map[FIELD_USER_ID] as String,
+        userId: map[FIELD_USER_ID] as String,
         id: id,
       );
     } else {
@@ -41,10 +40,10 @@ class ActivityFirebaseToDataMapper {
 extension ActivityDataToFirebase on data.Activity {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      FIELD_CATEGORY_ID: category_id,
-      FIELD_CREATED_AT: created_at.millisecondsSinceEpoch,
+      FIELD_CATEGORY_ID: categoryId,
+      FIELD_CREATED_AT: createdAt.millisecondsSinceEpoch,
       FIELD_DURATION_IN_HOURS: duration.inHours,
-      FIELD_USER_ID: user_id
+      FIELD_USER_ID: userId
     };
   }
 }

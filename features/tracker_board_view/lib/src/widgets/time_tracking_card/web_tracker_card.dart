@@ -102,8 +102,10 @@ class WebTrackerCard extends StatelessWidget {
 
   static Duration _durationOfActivities(List<Activity> activities) {
     return activities.map((Activity act) => act.duration).fold(
-        Duration(),
-        (Duration previousValue, Duration element) =>
-            Duration(seconds: previousValue.inSeconds + element.inSeconds));
+          const Duration(),
+          (Duration previousValue, Duration element) => Duration(
+            seconds: previousValue.inSeconds + element.inSeconds,
+          ),
+        );
   }
 }

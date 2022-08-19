@@ -59,6 +59,8 @@ class _TimeTrackingBoardScreen extends StatelessWidget {
   }
 
   void _onLogout(BuildContext context) {
-    context.read<TrackerBoardBloc>().add(Logout());
+    context.read<TrackerBoardBloc>().add(
+          Logout(),
+        );
   }
 }

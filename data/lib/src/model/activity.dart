@@ -1,15 +1,15 @@
 class Activity {
-  final String category_id;
-  final String user_id;
-  final DateTime created_at;
+  final String categoryId;
+  final String userId;
+  final DateTime createdAt;
   final Duration duration;
   final String id;
 
   Activity({
-    required this.category_id,
-    required this.created_at,
+    required this.categoryId,
+    required this.createdAt,
     required this.duration,
-    required this.user_id,
+    required this.userId,
     required this.id,
   });
 }
