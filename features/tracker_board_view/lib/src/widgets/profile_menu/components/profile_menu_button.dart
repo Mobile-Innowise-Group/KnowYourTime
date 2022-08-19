@@ -1,7 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-import '../../hover_decorator.dart';
+import 'package:tracker_board_view/src/widgets/hover_decorator.dart';
 
 class ProfileMenuButton extends StatelessWidget {
   final VoidCallback onPressed;

@@ -1,30 +1,28 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/tracker_card_type.dart';
-
-Color buildTrackerCardBackgroundColor(TrackerCardType trackerCardType) {
-  if (trackerCardType == TrackerCardType.work) {
+Color buildTrackerCardBackgroundColor(String categoryName) {
+  if (categoryName == 'work') {
     return AppColors.lightRedWork;
   }
 
-  if (trackerCardType == TrackerCardType.play) {
+  if (categoryName == 'play') {
     return AppColors.softBluePlay;
   }
 
-  if (trackerCardType == TrackerCardType.study) {
+  if (categoryName == 'study') {
     return AppColors.lightRedStudy;
   }
 
-  if (trackerCardType == TrackerCardType.exercise) {
+  if (categoryName == 'exercise') {
     return AppColors.limeGreenExercise;
   }
 
-  if (trackerCardType == TrackerCardType.social) {
+  if (categoryName == 'social') {
     return AppColors.violetSocial;
   }
 
-  if (trackerCardType == TrackerCardType.selfCare) {
+  if (categoryName == 'self_care') {
     return AppColors.softOrangeSelfCare;
   }
 

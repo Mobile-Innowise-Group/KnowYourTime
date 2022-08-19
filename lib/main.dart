@@ -1,7 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:data/data.dart';
-import 'package:data/src/services/firebase_auth_service.dart';
-import 'package:domain/src/entities/user/user.dart';
+import 'package:data/src/model/user.dart' as data;
+import 'package:di/di.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:know_your_time/screens/landing.dart';
@@ -19,7 +19,8 @@ Future<void> main() async {
       projectId: 'knowyourtime-7c7b0',
     ),
   );
-  DataDI.initDependencies();
+  final DataDi dataDi = DataDi(serviceLocator: appDependencies);
+  await dataDi.init();
   runApp(
     EasyLocalization(
       supportedLocales: const <Locale>[
@@ -27,18 +28,18 @@ Future<void> main() async {
       ],
       fallbackLocale: const Locale('en', 'US'),
       path: 'assets/translations',
-      child: const _TimeFrameApp(),
+      child: const _ActivityTrackerApp(),
     ),
   );
 }
 
-class _TimeFrameApp extends StatelessWidget {
-  const _TimeFrameApp();
+class _ActivityTrackerApp extends StatelessWidget {
+  const _ActivityTrackerApp();
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<UserInno?>.value(
-      value: AuthService().currentUser,
+    return StreamProvider<data.User?>.value(
+      value: AuthProvider().currentUser,
       initialData: null,
       child: MaterialApp(
         title: 'Know your time',

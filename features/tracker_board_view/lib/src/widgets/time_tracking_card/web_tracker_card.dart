@@ -9,15 +9,15 @@ import 'package:tracker_board_view/src/widgets/time_tracking_card/builders/track
 import 'package:tracker_board_view/src/widgets/time_tracking_card/builders/tracker_card_icon_asset_name_builder.dart';
 import 'package:tracker_board_view/src/widgets/time_tracking_card/builders/tracker_card_title_builder.dart';
 
-class MobileTrackerCard extends StatelessWidget {
+class WebTrackerCard extends StatelessWidget {
   final String categoryName;
   final List<Activity> currentActivityList;
   final List<Activity> previousActivityList;
   final PeriodTimeType periodTimeType;
 
-  static const double _height = 140.0;
+  static const double _size = 168.0;
 
-  const MobileTrackerCard({
+  const WebTrackerCard({
     required this.categoryName,
     required this.periodTimeType,
     required this.currentActivityList,
@@ -35,7 +35,8 @@ class MobileTrackerCard extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
-                height: _height,
+                width: _size,
+                height: _size,
                 color: buildTrackerCardBackgroundColor(categoryName),
               ),
               Positioned(
@@ -53,11 +54,10 @@ class MobileTrackerCard extends StatelessWidget {
               ),
               Positioned(
                 bottom: 0,
-                left: 0,
-                right: 0,
                 child: Container(
                   padding: const EdgeInsets.all(AppDimensions.padding24),
-                  height: _height - 30,
+                  width: _size,
+                  height: _size - 30,
                   decoration: BoxDecoration(
                     color: isHovered ? AppColors.onHover : AppColors.darkBlue,
                     borderRadius: const BorderRadius.all(
@@ -66,7 +66,6 @@ class MobileTrackerCard extends StatelessWidget {
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,21 +77,17 @@ class MobileTrackerCard extends StatelessWidget {
                           SvgPicture.asset(AppIcons.ellipsis, width: 14),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            '${_durationOfActivities(currentActivityList).inHours}${'timeTrackingBoardFeature.hours'.tr()}',
-                            style: AppTextStyle.rubicLight28,
-                          ),
-                          const SizedBox(height: AppDimensions.padding6),
-                          Text(
-                            '${buildTimeDescription(periodTimeType)} - ${_durationOfActivities(previousActivityList).inHours}${'timeTrackingBoardFeature.hours'.tr()}',
-                            style: AppTextStyle.rubicRegular10.copyWith(
-                              color: AppColors.paleBlue,
-                            ),
-                          ),
-                        ],
+                      const Spacer(),
+                      Text(
+                        '${_durationOfActivities(currentActivityList).inHours}${'timeTrackingBoardFeature.hours'.tr()}',
+                        style: AppTextStyle.rubicLight28,
+                      ),
+                      const SizedBox(height: AppDimensions.padding6),
+                      Text(
+                        '${buildTimeDescription(periodTimeType)} - ${_durationOfActivities(previousActivityList).inHours}${'timeTrackingBoardFeature.hours'.tr()}',
+                        style: AppTextStyle.rubicRegular10.copyWith(
+                          color: AppColors.paleBlue,
+                        ),
                       ),
                     ],
                   ),
@@ -107,7 +102,7 @@ class MobileTrackerCard extends StatelessWidget {
 
   static Duration _durationOfActivities(List<Activity> activities) {
     return activities.map((Activity act) => act.duration).fold(
-        const Duration(),
+        Duration(),
         (Duration previousValue, Duration element) =>
             Duration(seconds: previousValue.inSeconds + element.inSeconds));
   }

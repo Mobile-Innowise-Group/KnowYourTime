@@ -1,31 +1,29 @@
 import 'package:core_ui/core_ui.dart';
 
-import '../../../models/tracker_card_type.dart';
-
-String buildTrackingCardTitle(TrackerCardType trackerCardType) {
+String buildTrackingCardTitle(String categoryName) {
   const String notFoundLocalization = '-';
 
-  if (trackerCardType == TrackerCardType.work) {
+  if (categoryName == 'work') {
     return 'timeTrackingBoardFeature.work'.tr();
   }
 
-  if (trackerCardType == TrackerCardType.play) {
+  if (categoryName == 'play') {
     return 'timeTrackingBoardFeature.play'.tr();
   }
 
-  if (trackerCardType == TrackerCardType.study) {
+  if (categoryName == 'study') {
     return 'timeTrackingBoardFeature.study'.tr();
   }
 
-  if (trackerCardType == TrackerCardType.exercise) {
+  if (categoryName == 'exercise') {
     return 'timeTrackingBoardFeature.exercise'.tr();
   }
 
-  if (trackerCardType == TrackerCardType.social) {
+  if (categoryName == 'social') {
     return 'timeTrackingBoardFeature.social'.tr();
   }
 
-  if (trackerCardType == TrackerCardType.selfCare) {
+  if (categoryName == 'self_care') {
     return 'timeTrackingBoardFeature.selfCare'.tr();
   }
 

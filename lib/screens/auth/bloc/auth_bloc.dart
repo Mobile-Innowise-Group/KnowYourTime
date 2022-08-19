@@ -40,9 +40,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (_email.isEmpty || _password.isEmpty) {
       return;
     }
-    final UserInno? user = await _authRepository.signInWithEmailAndPassword(
-      email: _email.trim(),
-      password: _password.trim(),
+    final User? user = await _authRepository.signInWithEmailAndPassword(
+        EmailAndPassword(email: _email.trim(), password: _password.trim())
     );
     if (user == null) {
       Fluttertoast.showToast(
@@ -61,21 +60,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInWithAppleEvent event,
     Emitter<AuthState> emit,
   ) async {
-    await _authRepository.signInWithApple();
+    await _authRepository.signInWithSocial(AppleSignIn());
   }
 
   Future<void> _signInWithFacebook(
     SignInWithFacebookEvent event,
     Emitter<AuthState> emit,
   ) async {
-    await _authRepository.signInWithFacebook();
+    await _authRepository.signInWithSocial(FacebookSignIn());
   }
 
   Future<void> _signInWithGoogle(
     SignInWithGoogleEvent event,
     Emitter<AuthState> emit,
   ) async {
-    await _authRepository.signInWithGoogle();
+    await _authRepository.signInWithSocial(GoogleSignIn());
   }
 
   Future<void> _registerWithEmailAndPassword(
@@ -88,9 +87,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (_email.isEmpty || _password.isEmpty) {
       return;
     }
-    final UserInno? user = await _authRepository.registerWithEmailAndPassword(
-      email: _email.trim(),
-      password: _password.trim(),
+    final User? user = await _authRepository.signUpWithEmailAndPassword(
+      EmailAndPassword(email: _email.trim(), password: _password.trim()),
     );
     if (user == null) {
       Fluttertoast.showToast(

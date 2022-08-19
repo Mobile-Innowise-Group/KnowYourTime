@@ -1,4 +1,4 @@
-import 'package:domain/src/entities/user/user.dart';
+import 'package:data/src/model/user.dart' as data;
 import 'package:flutter/cupertino.dart';
 import 'package:know_your_time/screens/auth/auth_screen.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserInno? user = Provider.of<UserInno?>(context);
+    final data.User? user = Provider.of<data.User?>(context);
     final bool isLoggedIn = user != null;
     return isLoggedIn ? const TimeTrackingBoardScreen() : AuthorizationPage();
   }

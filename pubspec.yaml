@@ -15,13 +15,16 @@ dependencies:
   google_sign_in: ^5.4.0
   fluttertoast: ^8.0.9
   firebase_auth: ^3.5.0
+  equatable: ^2.0.0
   core:
     path: core
   core_ui:
     path: core_ui
   domain:
     path: domain
-  firebase_core: ^1.14.1
+  di:
+    path: di
+  firebase_core: ^1.20.0
   cloud_firestore: ^3.4.0
   provider: ^6.0.3
   flutter:

@@ -1,5 +1,13 @@
+import 'package:domain/domain.dart';
+
 abstract class TrackerBoardEvent {
   const TrackerBoardEvent();
+}
+
+class ActivitiesUpdated implements TrackerBoardEvent {
+  final List<Activity> allActivities;
+
+  ActivitiesUpdated({required this.allActivities});
 }
 
 class PressDailyButton implements TrackerBoardEvent {
@@ -14,6 +22,6 @@ class PressMonthlyButton implements TrackerBoardEvent {
   const PressMonthlyButton();
 }
 
-class LoadTimeFrames implements TrackerBoardEvent {
-  const LoadTimeFrames();
-} 
+class GetUser implements TrackerBoardEvent {}
+
+class Logout implements TrackerBoardEvent {}

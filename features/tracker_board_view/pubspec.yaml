@@ -7,6 +7,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  equatable: ^2.0.0
   flutter:
     sdk: flutter
 
@@ -18,6 +19,8 @@ dependencies:
     path: ../../domain
   core_ui:
     path: ../../core_ui
+  di:
+    path: ../../di
 
 
 dev_dependencies:
