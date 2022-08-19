@@ -26,7 +26,9 @@ class MobileAuthorizationPage extends StatelessWidget {
             body: Column(
               children: <Widget>[
                 const Spacer(flex: 2),
-                LogoWithLabel(),
+                LogoWithLabel(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
                 state.isUserRegistered
                     ? Expanded(
                         flex: 7,
@@ -87,7 +89,7 @@ class MobileAuthorizationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 10),
+                                const SizedBox(width: AppDimensions.padding10),
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
@@ -107,7 +109,7 @@ class MobileAuthorizationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 10),
+                                const SizedBox(width: AppDimensions.padding10),
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
@@ -194,7 +196,7 @@ class MobileAuthorizationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 10),
+                                const SizedBox(width: AppDimensions.padding10),
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
@@ -214,7 +216,7 @@ class MobileAuthorizationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 10),
+                                const SizedBox(width: AppDimensions.padding10),
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(

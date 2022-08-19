@@ -26,15 +26,15 @@ class WebAuthorizationPage extends StatelessWidget {
             body: Column(
               children: <Widget>[
                 const Spacer(),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: <Widget>[
-                      LogoWithLabel(),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding20,
+                  ),
+                  child: LogoWithLabel(
+                    mainAxisAlignment: MainAxisAlignment.start,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: AppDimensions.padding20),
                 state.isUserRegistered
                     ? Expanded(
                         flex: 10,
@@ -94,7 +94,9 @@ class WebAuthorizationPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 16),
+                                  const SizedBox(
+                                    width: AppDimensions.padding16,
+                                  ),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -114,7 +116,9 @@ class WebAuthorizationPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 16),
+                                  const SizedBox(
+                                    width: AppDimensions.padding16,
+                                  ),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -201,7 +205,9 @@ class WebAuthorizationPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 16),
+                                  const SizedBox(
+                                    width: AppDimensions.padding16,
+                                  ),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -221,7 +227,9 @@ class WebAuthorizationPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 16),
+                                  const SizedBox(
+                                    width: AppDimensions.padding16,
+                                  ),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(

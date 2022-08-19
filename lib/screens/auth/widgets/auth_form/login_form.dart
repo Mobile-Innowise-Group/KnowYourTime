@@ -1,6 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:know_your_time/screens/auth/utils/validator.dart';
+import 'package:know_your_time/screens/auth/widgets/auth_button.dart';
 import 'package:know_your_time/screens/auth/widgets/input_bar.dart';
 
 class LoginForm extends StatelessWidget {
@@ -46,30 +47,18 @@ class LoginForm extends StatelessWidget {
               maxLength: 30,
             ),
             const SizedBox(height: AppDimensions.padding20),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.circular(AppDimensions.borderRadius4),
-                color: AppColors.white,
-              ),
-              height: 50,
-              width: MediaQuery.of(context).size.width - 40,
-              child: TextButton(
-                onPressed: () {
-                  if (_loginFormKey.currentState!.validate()) {
-                    onTap(
-                      _emailController.text,
-                      _passwordController.text,
-                    );
-                  } else {
-                    return null;
-                  }
-                },
-                child: Text(
-                  'general.login_uppercase'.tr(),
-                  style: AppTextStyle.rubicRegularLoginButton20,
-                ),
-              ),
+            AuthButton(
+              label: 'general.login_uppercase'.tr(),
+              onTap: () {
+                if (_loginFormKey.currentState!.validate()) {
+                  onTap(
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+                } else {
+                  return null;
+                }
+              },
             ),
           ],
         ),
