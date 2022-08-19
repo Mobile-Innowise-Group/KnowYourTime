@@ -1,10 +1,10 @@
 import 'package:core_ui/core_ui.dart';
+import 'package:data/src/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
-
-import '../bloc/tracker_board_bloc.dart';
-import '../models/tracker_card_type.dart';
-import '../widgets/profile_menu/desktop_profile_menu.dart';
-import '../widgets/time_tracking_card/desktop_tracker_card.dart';
+import 'package:tracker_board_view/src/bloc/tracker_board_bloc.dart';
+import 'package:tracker_board_view/src/models/tracker_card_type.dart';
+import 'package:tracker_board_view/src/widgets/profile_menu/desktop_profile_menu.dart';
+import 'package:tracker_board_view/src/widgets/time_tracking_card/desktop_tracker_card.dart';
 
 class DesktopTimeTrackingBoardComposite extends StatelessWidget {
   final TrackerBoardState state;
@@ -20,34 +20,52 @@ class DesktopTimeTrackingBoardComposite extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SizedBox(
-            height: 360,
+            height: 400,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                DesktopProfileMenu(
-                  avatar: const AssetImage(AppImages.jeremy),
-                  firstName: 'Jeremy',
-                  lastName: 'Robson',
-                  selectedPeriodTimeType: state.periodTimeType,
-                  onDailyPressed: () {
-                    BlocProvider.of<TrackerBoardBloc>(context,
-                            listen: false)
-                        .add(const PressDailyButton());
-                  },
-                  onMonthlyPressed: () {
-                    BlocProvider.of<TrackerBoardBloc>(context,
-                            listen: false)
-                        .add(const PressMonthlyButton());
-                  },
-                  onWeeklyPressed: () {
-                    BlocProvider.of<TrackerBoardBloc>(context,
-                            listen: false)
-                        .add(const PressWeeklyButton());
-                  },
+                Column(
+                  children: <Widget>[
+                    DesktopProfileMenu(
+                      avatar: const AssetImage(AppImages.jeremy),
+                      firstName: 'Jeremy',
+                      lastName: 'Robson',
+                      selectedPeriodTimeType: state.periodTimeType,
+                      onDailyPressed: () {
+                        BlocProvider.of<TrackerBoardBloc>(
+                          context,
+                          listen: false,
+                        ).add(const PressDailyButton());
+                      },
+                      onMonthlyPressed: () {
+                        BlocProvider.of<TrackerBoardBloc>(
+                          context,
+                          listen: false,
+                        ).add(const PressMonthlyButton());
+                      },
+                      onWeeklyPressed: () {
+                        BlocProvider.of<TrackerBoardBloc>(
+                          context,
+                          listen: false,
+                        ).add(const PressWeeklyButton());
+                      },
+                    ),
+                    const SizedBox(height: AppDimensions.padding10),
+                    TextButton.icon(
+                      onPressed: () => AuthService().signOut(),
+                      icon: const Icon(
+                        Icons.logout,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'general.logout'.tr(),
+                        style: AppTextStyle.rubicRegular20,
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(width: AppDimensions.padding24),
                 Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Row(
                       mainAxisSize: MainAxisSize.min,

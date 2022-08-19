@@ -11,7 +11,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: 'AIzaSyAiT93RiXxIA_dNWgySy5jaOcAlkuRbWOE',
+      appId: '1:616009798129:android:3507f8a0c88648e5abf450',
+      messagingSenderId: '616009798129',
+      projectId: 'knowyourtime-7c7b0',
+    ),
+  );
   DataDI.initDependencies();
   runApp(
     EasyLocalization(
@@ -42,7 +49,7 @@ class _TimeFrameApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: LandingPage(),
+        home: const LandingPage(),
       ),
     );
   }

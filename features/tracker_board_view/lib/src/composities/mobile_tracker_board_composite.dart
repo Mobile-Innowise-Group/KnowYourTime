@@ -2,10 +2,10 @@ import 'package:core_ui/core_ui.dart';
 import 'package:data/src/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 
-import '../bloc/tracker_board_bloc.dart';
-import '../models/tracker_card_type.dart';
-import '../widgets/profile_menu/mobile_profile_menu.dart';
-import '../widgets/time_tracking_card/mobile_time_tracking_card.dart';
+import 'package:tracker_board_view/src/bloc/tracker_board_bloc.dart';
+import 'package:tracker_board_view/src/models/tracker_card_type.dart';
+import 'package:tracker_board_view/src/widgets/profile_menu/mobile_profile_menu.dart';
+import 'package:tracker_board_view/src/widgets/time_tracking_card/mobile_time_tracking_card.dart';
 
 class MobileTimeTrackingBoardComposite extends StatelessWidget {
   final TrackerBoardState state;
@@ -104,12 +104,15 @@ class MobileTimeTrackingBoardComposite extends StatelessWidget {
                   onPressed: () {
                     AuthService().signOut();
                   },
-                  icon: Icon(Icons.logout, color: Colors.white),
+                  icon: const Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                  ),
                   label: Text(
                     'general.logout'.tr(),
                     style: AppTextStyle.rubicRegular20,
                   ),
-                )
+                ),
               ],
             ),
           ),
