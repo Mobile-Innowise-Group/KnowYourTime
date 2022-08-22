@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:tracker_board_view/src/bloc/tracker_board_event.dart';
@@ -14,6 +15,7 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
   final UserRepository _userRepository;
   final AuthRepository _authRepository;
   StreamSubscription<Future<List<Activity>>>? allActivitiesListener;
+  final Connectivity _connectivity = Connectivity();
 
   TrackerBoardBloc({
     required AuthRepository authRepository,
@@ -29,6 +31,27 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
     on<ActivitiesUpdated>(_onAllActivitiesUpdated);
     on<GetUser>(_onGetUser);
     on<Logout>(_onLogout);
+    on<CheckOfflineMode>(_onCheckOfflineMode);
+
+    _connectivity.onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          print('tuta');
+          add(
+            CheckOfflineMode(
+              isInternetAvailable: false,
+            ),
+          );
+        } else {
+          print('tut');
+          add(
+            CheckOfflineMode(
+              isInternetAvailable: true,
+            ),
+          );
+        }
+      },
+    );
 
     allActivitiesListener = _activityRepository.observeAll().listen(
       (Future<List<Activity>> eventActivities) async {
@@ -96,6 +119,15 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
         currentPeriodActivities: periodActivities.current,
         previousPeriodActivities: periodActivities.previous,
         periodTimeType: period,
+      ),
+    );
+  }
+
+  Future<void> _onCheckOfflineMode(
+      CheckOfflineMode event, Emitter<TrackerBoardState> emit) async {
+    emit(
+      state.copyWith(
+        isInternetAvailable: event.isInternetAvailable,
       ),
     );
   }

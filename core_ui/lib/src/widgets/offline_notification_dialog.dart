@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class OfflineNotificationDialog extends StatelessWidget {
@@ -7,24 +8,46 @@ class OfflineNotificationDialog extends StatelessWidget {
       child: Dialog(
         backgroundColor: Colors.transparent,
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              AppDimensions.padding10,
+            ),
+          ),
+        ),
         child: Container(
-          height: 80,
-          width: 100,
+          height: AppDimensions.padding80,
+          width: AppDimensions.padding100,
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.white, width: 2),
-              borderRadius: const BorderRadius.all(Radius.circular(10.0))),
+            border: Border.all(
+              color: AppColors.white,
+              width: 2,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(
+                AppDimensions.padding10,
+              ),
+            ),
+          ),
           child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(
+                  AppDimensions.padding10,
+                ),
                 child: Text(
-                  'No internet connection',
-                  style: TextStyle(color: Colors.white),
+                  'general.no_internet_connection'.tr(),
+                  style: AppTextStyle.rubicRegular12.copyWith(
+                    color: AppColors.white,
+                  ),
                 ),
               ),
-              const SizedBox(height: 10),
-              const Icon(Icons.network_locked, color: Colors.white),
+              const SizedBox(
+                height: AppDimensions.padding10,
+              ),
+              const Icon(
+                Icons.network_locked,
+                color: Colors.white,
+              ),
             ],
           ),
         ),

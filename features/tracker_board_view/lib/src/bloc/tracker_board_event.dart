@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:tracker_board_view/src/bloc/tracker_board_bloc.dart';
 
 abstract class TrackerBoardEvent {
   const TrackerBoardEvent();
@@ -20,6 +21,14 @@ class PressWeeklyButton implements TrackerBoardEvent {
 
 class PressMonthlyButton implements TrackerBoardEvent {
   const PressMonthlyButton();
+}
+
+class CheckOfflineMode implements TrackerBoardEvent {
+  final bool isInternetAvailable;
+
+  CheckOfflineMode({
+    required this.isInternetAvailable,
+  });
 }
 
 class GetUser implements TrackerBoardEvent {}

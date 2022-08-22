@@ -8,8 +8,8 @@ class TrackerBoardState extends Equatable {
   final List<Activity> allActivities;
   final List<Activity> currentPeriodActivities;
   final List<Activity> previousPeriodActivities;
-
   final User? currentUser;
+  final bool isInternetAvailable;
 
   const TrackerBoardState({
     required this.periodTimeType,
@@ -17,6 +17,7 @@ class TrackerBoardState extends Equatable {
     required this.currentPeriodActivities,
     required this.previousPeriodActivities,
     required this.currentUser,
+    required this.isInternetAvailable,
   });
 
   factory TrackerBoardState.initState() {
@@ -26,6 +27,7 @@ class TrackerBoardState extends Equatable {
       currentPeriodActivities: <Activity>[],
       previousPeriodActivities: <Activity>[],
       currentUser: null,
+      isInternetAvailable: true,
     );
   }
 
@@ -35,6 +37,7 @@ class TrackerBoardState extends Equatable {
     List<Activity>? previousPeriodActivities,
     List<Activity>? allActivities,
     User? currentUser,
+    bool? isInternetAvailable,
   }) {
     return TrackerBoardState(
       periodTimeType: periodTimeType ?? this.periodTimeType,
@@ -44,6 +47,7 @@ class TrackerBoardState extends Equatable {
       currentPeriodActivities:
           currentPeriodActivities ?? this.currentPeriodActivities,
       currentUser: currentUser ?? this.currentUser,
+      isInternetAvailable: isInternetAvailable ?? this.isInternetAvailable,
     );
   }
 
@@ -54,5 +58,6 @@ class TrackerBoardState extends Equatable {
         previousPeriodActivities,
         allActivities,
         periodTimeType,
+        isInternetAvailable,
       ];
 }

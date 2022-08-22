@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -10,33 +9,10 @@ import 'package:know_your_time/screens/auth/widgets/auth_form/login_form.dart';
 import 'package:know_your_time/screens/auth/widgets/auth_form/registration_form.dart';
 import 'package:know_your_time/screens/auth/widgets/logo_with_label.dart';
 
-class MobileAuthorizationPage extends StatefulWidget {
-  MobileAuthorizationPage({Key? key}) : super(key: key);
-
-  @override
-  _MobileAuthorizationPageState createState() =>
-      _MobileAuthorizationPageState();
-}
-
-class _MobileAuthorizationPageState extends State<MobileAuthorizationPage> {
-  final Connectivity _connectivity = Connectivity();
-  bool isInternetAvailable = false;
-
-  @override
-  void initState() {
-    _connectivity.onConnectivityChanged.listen((event) {
-      if (event == ConnectivityResult.none) {
-        setState(() {
-          isInternetAvailable = false;
-        });
-      } else {
-        setState(() {
-          isInternetAvailable = true;
-        });
-      }
-    });
-    super.initState();
-  }
+class MobileAuthorizationPage extends StatelessWidget {
+  MobileAuthorizationPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +25,14 @@ class _MobileAuthorizationPageState extends State<MobileAuthorizationPage> {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: AppColors.darkBlue,
-            body: isInternetAvailable
+            body: state.isInternetAvailable!
                 ? Column(
                     children: <Widget>[
                       const Spacer(flex: 2),
                       LogoWithLabel(
                         mainAxisAlignment: MainAxisAlignment.center,
                       ),
-                      state.isUserRegistered
+                      state.isUserRegistered!
                           ? Expanded(
                               flex: 7,
                               child: Column(

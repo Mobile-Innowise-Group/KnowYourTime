@@ -35,7 +35,7 @@ class WebAuthorizationPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: AppDimensions.padding20),
-                state.isUserRegistered
+                state.isUserRegistered!
                     ? Expanded(
                         flex: 10,
                         child: Padding(

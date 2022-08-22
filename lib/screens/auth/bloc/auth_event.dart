@@ -32,6 +32,14 @@ class UpdateUserRegistrationStatusEvent implements AuthEvent {
   });
 }
 
+class CheckOfflineModeEvent implements AuthEvent {
+  final bool isInternetAvailable;
+
+  CheckOfflineModeEvent({
+    required this.isInternetAvailable,
+  });
+}
+
 class RegisterWithEmailAndPasswordEvent implements AuthEvent {
   final String email;
   final String password;

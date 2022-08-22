@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,6 +7,7 @@ import 'package:know_your_time/screens/auth/bloc/auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepository;
+  final Connectivity _connectivity = Connectivity();
 
   AuthBloc({
     required AuthRepository authRepository,
@@ -17,6 +19,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInWithGoogleEvent>(_signInWithGoogle);
     on<RegisterWithEmailAndPasswordEvent>(_registerWithEmailAndPassword);
     on<UpdateUserRegistrationStatusEvent>(_updateUserRegistrationStatus);
+    on<CheckOfflineModeEvent>(_onCheckOfflineMode);
+
+    _connectivity.onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          add(
+            CheckOfflineModeEvent(
+              isInternetAvailable: false,
+            ),
+          );
+        } else {
+          add(
+            CheckOfflineModeEvent(
+              isInternetAvailable: true,
+            ),
+          );
+        }
+      },
+    );
   }
 
   void _updateUserRegistrationStatus(
@@ -24,7 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) {
     emit(
-      AuthState(
+      state.copyWith(
         isUserRegistered: event.isUserRegister,
       ),
     );
@@ -113,5 +134,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         fontSize: 16.0,
       );
     }
+  }
+
+  Future<void> _onCheckOfflineMode(
+    CheckOfflineModeEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isInternetAvailable: event.isInternetAvailable,
+      ),
+    );
   }
 }

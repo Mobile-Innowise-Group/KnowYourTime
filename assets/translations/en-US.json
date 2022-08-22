@@ -32,6 +32,7 @@
     "label_uppercase": "KNOW YOUR TIME",
     "cant_be_empty": "Can't be empty",
     "too_short": "Too short",
-    "do_not_use_the_invalid_symbol": "Please don't use the @ char"
+    "do_not_use_the_invalid_symbol": "Please don't use the @ char",
+    "no_internet_connection": "No internet connection"
   }
 }
