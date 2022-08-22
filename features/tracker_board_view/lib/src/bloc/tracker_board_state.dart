@@ -1,34 +1,58 @@
-import '../models/period_time_type.dart';
-import '../models/time_frame_filter.dart';
+import 'package:domain/domain.dart';
+import 'package:equatable/equatable.dart';
 
-class TrackerBoardState {
-  final bool isLoading;
+import 'package:tracker_board_view/src/models/period_time_type.dart';
+
+class TrackerBoardState extends Equatable {
   final PeriodTimeType periodTimeType;
-  final TimeFrameFilter? timeFrameFilter;
+  final List<Activity> allActivities;
+  final List<Activity> currentPeriodActivities;
+  final List<Activity> previousPeriodActivities;
 
-  TrackerBoardState({
-    required this.isLoading,
+  final User? currentUser;
+
+  const TrackerBoardState({
     required this.periodTimeType,
-    required this.timeFrameFilter,
+    required this.allActivities,
+    required this.currentPeriodActivities,
+    required this.previousPeriodActivities,
+    required this.currentUser,
   });
 
   factory TrackerBoardState.initState() {
-    return TrackerBoardState(
-      isLoading: false,
-      periodTimeType: PeriodTimeType.weekly,
-      timeFrameFilter: null,
+    return const TrackerBoardState(
+      periodTimeType: PeriodTimeType.daily,
+      allActivities: <Activity>[],
+      currentPeriodActivities: <Activity>[],
+      previousPeriodActivities: <Activity>[],
+      currentUser: null,
     );
   }
 
   TrackerBoardState copyWith({
-    bool? isLoading,
     PeriodTimeType? periodTimeType,
-    TimeFrameFilter? timeFrameFilter,
+    List<Activity>? currentPeriodActivities,
+    List<Activity>? previousPeriodActivities,
+    List<Activity>? allActivities,
+    User? currentUser,
   }) {
     return TrackerBoardState(
-      isLoading: isLoading ?? this.isLoading,
       periodTimeType: periodTimeType ?? this.periodTimeType,
-      timeFrameFilter: timeFrameFilter ?? this.timeFrameFilter,
+      allActivities: allActivities ?? this.allActivities,
+      previousPeriodActivities:
+          previousPeriodActivities ?? this.previousPeriodActivities,
+      currentPeriodActivities:
+          currentPeriodActivities ?? this.currentPeriodActivities,
+      currentUser: currentUser ?? this.currentUser,
     );
   }
+
+  @override
+  List<Object?> get props => <Object?>[
+        currentPeriodActivities,
+        currentUser,
+        previousPeriodActivities,
+        allActivities,
+        periodTimeType,
+      ];
 }

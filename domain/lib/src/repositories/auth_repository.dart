@@ -1,19 +1,29 @@
 import 'package:domain/domain.dart';
 
 abstract class AuthRepository {
-  Future<void> signInWithGoogle();
+  Future<User?> signInWithEmailAndPassword(EmailAndPassword params);
 
-  Future<UserInno?> signInWithEmailAndPassword({
-    required String email,
-    required String password,
-  });
+  Future<void> signOut();
 
-  Future<void> signInWithFacebook();
+  Future<User?> signUpWithEmailAndPassword(EmailAndPassword params);
 
-  Future<void> signInWithApple();
+  Future<User?> signInWithSocial(SignInSocialParam param);
+}
 
-  Future<UserInno?> registerWithEmailAndPassword({
-    required String email,
-    required String password,
+class EmailAndPassword {
+  final String email;
+  final String password;
+
+  EmailAndPassword({
+    required this.email,
+    required this.password,
   });
 }
+
+class GoogleSignIn implements SignInSocialParam {}
+
+class AppleSignIn implements SignInSocialParam {}
+
+class FacebookSignIn implements SignInSocialParam {}
+
+abstract class SignInSocialParam {}

@@ -1,10 +1,8 @@
-import 'dart:collection';
-
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/period_time_type.dart';
-import 'components/profile_menu_button.dart';
+import 'package:tracker_board_view/src/models/period_time_type.dart';
+import 'package:tracker_board_view/src/widgets/profile_menu/components/profile_menu_button.dart';
 
 class MobileProfileMenu extends StatelessWidget {
   final ImageProvider avatar;
@@ -35,9 +33,7 @@ class MobileProfileMenu extends StatelessWidget {
     return Center(
       child: ClipRRect(
         borderRadius: const BorderRadius.all(
-          Radius.circular(
-            AppDimensions.borderRadius16,
-          ),
+          Radius.circular(AppDimensions.borderRadius16),
         ),
         child: Stack(
           children: <Widget>[

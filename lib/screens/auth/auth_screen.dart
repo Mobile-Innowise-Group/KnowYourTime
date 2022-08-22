@@ -32,7 +32,7 @@ class _AuthorizationPage extends StatelessWidget {
         builder: (context, state) {
           return AdaptiveScreen(
             mobile: MobileAuthorizationPage(),
-            desktop: WebAuthorizationPage(),
+            web: WebAuthorizationPage(),
           );
         },
       ),

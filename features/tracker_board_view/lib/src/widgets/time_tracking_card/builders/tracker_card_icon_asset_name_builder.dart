@@ -1,29 +1,27 @@
 import 'package:core_ui/core_ui.dart';
 
-import '../../../models/tracker_card_type.dart';
-
-String buildCardTrackingIconAssetName(TrackerCardType trackerCardType) {
-  if (trackerCardType == TrackerCardType.work) {
+String buildCardTrackingIconAssetName(String categoryName) {
+  if (categoryName == 'work') {
     return AppIcons.work;
   }
 
-  if (trackerCardType == TrackerCardType.play) {
+  if (categoryName == 'play') {
     return AppIcons.play;
   }
 
-  if (trackerCardType == TrackerCardType.study) {
+  if (categoryName == 'study') {
     return AppIcons.study;
   }
 
-  if (trackerCardType == TrackerCardType.exercise) {
+  if (categoryName == 'exercise') {
     return AppIcons.exercise;
   }
 
-  if (trackerCardType == TrackerCardType.social) {
+  if (categoryName == 'social') {
     return AppIcons.social;
   }
 
-  if (trackerCardType == TrackerCardType.selfCare) {
+  if (categoryName == 'self_care') {
     return AppIcons.selfCare;
   }
 
