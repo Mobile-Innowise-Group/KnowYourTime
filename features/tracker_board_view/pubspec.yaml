@@ -21,6 +21,7 @@ dependencies:
     path: ../../core_ui
   di:
     path: ../../di
+  connectivity_plus: ^2.3.6+1
 
 
 dev_dependencies:
