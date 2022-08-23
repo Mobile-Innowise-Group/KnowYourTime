@@ -12,3 +12,4 @@ export 'src/images/app_images.dart';
 export 'src/layout/adaptive_screen.dart';
 export 'src/text_style/app_text_style.dart';
 export 'src/widgets/app_progress_indicator.dart';
+export 'src/widgets/offline_notification_dialog.dart';

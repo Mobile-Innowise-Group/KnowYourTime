@@ -10,6 +10,7 @@ class AppDimensions {
   static const double padding24 = 24.0;
   static const double padding60 = 60.0;
   static const double padding70 = 70.0;
+  static const double padding80 = 80.0;
   static const double padding100 = 100.0;
   static const double padding140 = 140.0;
 

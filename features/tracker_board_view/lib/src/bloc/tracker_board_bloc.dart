@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:tracker_board_view/src/bloc/tracker_board_event.dart';
@@ -14,6 +15,7 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
   final UserRepository _userRepository;
   final AuthRepository _authRepository;
   StreamSubscription<Future<List<Activity>>>? allActivitiesListener;
+  final Connectivity _connectivity = Connectivity();
 
   TrackerBoardBloc({
     required AuthRepository authRepository,
@@ -29,18 +31,41 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
     on<ActivitiesUpdated>(_onAllActivitiesUpdated);
     on<GetUser>(_onGetUser);
     on<Logout>(_onLogout);
+    on<CheckOfflineMode>(_onCheckOfflineMode);
+
+    _connectivity.onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          add(
+            CheckOfflineMode(
+              isInternetAvailable: false,
+            ),
+          );
+        } else {
+          add(
+            CheckOfflineMode(
+              isInternetAvailable: true,
+            ),
+          );
+        }
+      },
+    );
 
     allActivitiesListener = _activityRepository.observeAll().listen(
       (Future<List<Activity>> eventActivities) async {
         add(
-          ActivitiesUpdated(allActivities: await eventActivities),
+          ActivitiesUpdated(
+            allActivities: await eventActivities,
+          ),
         );
       },
     );
   }
 
   Future<void> _onPressDailyButton(
-      PressDailyButton _, Emitter<TrackerBoardState> emit) async {
+    PressDailyButton _,
+    Emitter<TrackerBoardState> emit,
+  ) async {
     const PeriodTimeType period = PeriodTimeType.daily;
     final PeriodActivities periodActivities =
         _filterByPeriod(period, state.allActivities);
@@ -55,7 +80,9 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
   }
 
   Future<void> _onPressWeeklyButton(
-      PressWeeklyButton _, Emitter<TrackerBoardState> emit) async {
+    PressWeeklyButton _,
+    Emitter<TrackerBoardState> emit,
+  ) async {
     const PeriodTimeType period = PeriodTimeType.weekly;
     final PeriodActivities periodActivities =
         _filterByPeriod(period, state.allActivities);
@@ -70,7 +97,9 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
   }
 
   Future<void> _onPressMonthlyButton(
-      PressMonthlyButton _, Emitter<TrackerBoardState> emit) async {
+    PressMonthlyButton _,
+    Emitter<TrackerBoardState> emit,
+  ) async {
     const PeriodTimeType period = PeriodTimeType.monthly;
     final PeriodActivities periodActivities =
         _filterByPeriod(period, state.allActivities);
@@ -100,7 +129,21 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
     );
   }
 
-  Future<void> _onGetUser(_, Emitter<TrackerBoardState> emit) async {
+  Future<void> _onCheckOfflineMode(
+    CheckOfflineMode event,
+    Emitter<TrackerBoardState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isInternetAvailable: event.isInternetAvailable,
+      ),
+    );
+  }
+
+  Future<void> _onGetUser(
+    _,
+    Emitter<TrackerBoardState> emit,
+  ) async {
     emit(
       state.copyWith(
         currentUser: await _userRepository.getCurrent(),
@@ -108,7 +151,10 @@ class TrackerBoardBloc extends Bloc<TrackerBoardEvent, TrackerBoardState> {
     );
   }
 
-  Future<void> _onLogout(_, Emitter<TrackerBoardState> emit) async {
+  Future<void> _onLogout(
+    _,
+    Emitter<TrackerBoardState> emit,
+  ) async {
     _authRepository.signOut();
   }
 
